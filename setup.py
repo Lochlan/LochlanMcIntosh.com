@@ -1,9 +1,9 @@
 from setuptools import setup
 
-setup(name='django 1.7 on Red Hat Openshift',
-    version='1.3',
-    description='django on OpenShift',
-    author='',
+setup(name='LochlanMcIntosh.com',
+    version='1.0',
+    description='LochlanMcIntosh.com, powered by Django and OpenShift',
+    author='Lochlan McIntosh',
     author_email='',
-    url='https://github.com/jfmatth/openshift-django17',
+    url='https://github.com/Lochlan/LochlanMcIntosh.com',
 )
