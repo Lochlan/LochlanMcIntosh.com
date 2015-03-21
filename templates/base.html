@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Lochlan McIntosh - Web Design and Development - Portland, OR</title>
+    <meta name="description" content="The homepage of Portland Oregon Web Developer Lochlan McIntosh, offering a range of full-stack web design and development services for your business or organization.">
+
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="title">
+            <span class="title_first_name">LOCHLAN</span>
+            <span class="title_last_name">McINTOSH</span>
+        </h1>
+
+        <p class="subtitle"><em>Software engineer specializing in front-end web development &nbsp; ❧ &nbsp; Located in Portland, Oregon</em></p>
+    </header>
+
+    <nav>
+        <ul class="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Résumé</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="js-Backbone content">
+        {% block content %}{% endblock %}
+    </section>
+
+    <footer class="footer">
+        <a
+            href="https://github.com/Lochlan/LochlanMcIntosh.com"
+            target="_blank"
+        >fork me on github</a>
+    </footer>
+
+    <script
+        data-main="static/js/main"
+        src="static/js/vendor/require.js"
+    ></script>
+</body>
+</html>
