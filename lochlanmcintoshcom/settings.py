@@ -47,7 +47,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'lochlanmcintoshcom.urls'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
