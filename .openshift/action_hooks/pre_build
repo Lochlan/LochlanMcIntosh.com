@@ -5,3 +5,9 @@
 # could be python, php, ruby, etc.
 
 echo "--> ACTION HOOK: pre_build <--"
+
+#  Source utility functions.
+source "$OPENSHIFT_REPO_DIR/.openshift/lib/utils"
+
+#  Ensure custom node version if not installed.
+ensure_node_is_installed

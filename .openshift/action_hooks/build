@@ -7,3 +7,15 @@
 # Activate VirtualEnv in order to use the correct libraries
 
 echo "--> ACTION HOOK: build <--"
+
+#  Source utility functions.
+source "$OPENSHIFT_REPO_DIR.openshift/lib/utils"
+
+#  Setup path to include the custom Node[.js] version.
+_SHOW_SETUP_PATH_MESSAGES="true" setup_path_for_custom_node_version
+
+# build
+cd "$OPENSHIFT_REPO_DIR"
+HOME=`pwd` # hack, fixes error about insufficient priviledges when running npm
+export TMPDIR="/tmp"
+make build

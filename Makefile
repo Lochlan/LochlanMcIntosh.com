@@ -90,9 +90,10 @@ test: $(SRC_JS_VENDOR) $(BUILD_HBS) node_modules/karma/bin/karma
 
 # file rules
 
-$(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $(SRC_SCSS_VENDOR)
+SASS = $(shell bundle show sass)/bin/sass
+$(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $(SRC_SCSS_VENDOR) makedeps/gemfile.d
 	mkdir -p "$(@D)"
-	sass --style compressed -I $(SRC_SCSS_PATH) -r sass-import_once $< $@
+	$(SASS) --style compressed --load-path $(SRC_SCSS_PATH) $< $@
 
 $(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules/.bin/handlebars
 	mkdir -p "$(@D)"
