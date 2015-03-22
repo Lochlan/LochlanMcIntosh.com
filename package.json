@@ -1,0 +1,31 @@
+{
+  "name": "lochlanmcintosh.com",
+  "version": "0.0.0",
+  "description": "LochlanMcIntosh.com",
+  "author": "Lochlan McIntosh <admin@lochlanmcintosh.com>",
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lochlan/LochlanMcIntosh.com"
+  },
+  "bugs": {
+    "url": "https://github.com/Lochlan/LochlanMcIntosh.com/issues"
+  },
+  "devDependencies": {
+    "backbone": "1.1.2",
+    "handlebars": "3.0.0",
+    "jquery": "2.1.3",
+    "jshint": "2.6.3",
+    "karma": "0.12.31",
+    "karma-phantomjs-launcher": "0.1.4",
+    "karma-jasmine": "0.3.5",
+    "karma-requirejs": "0.2.2",
+    "normalize.css": "3.0.2",
+    "requirejs": "2.1.16",
+    "underscore": "1.8.2",
+    "webfont-dl": "0.1.2"
+  },
+  "private": true
+}

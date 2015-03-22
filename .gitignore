@@ -1,3 +1,13 @@
 *.pyc
+.sass-cache/
 db.sqlite3
 env/
+makedeps/
+node_modules/
+static/css/
+static/fonts/
+static/js/
+static/src/js/templates/
+static/src/js/vendor/
+static/src/scss/partials/_fonts.scss
+static/src/scss/vendor/

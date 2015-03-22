@@ -11,4 +11,4 @@ echo "Executing 'python $OPENSHIFT_REPO_DIR/manage.py migrate --noinput'"
 python "$OPENSHIFT_REPO_DIR"/manage.py migrate --noinput
 
 echo "Executing 'python $OPENSHIFT_REPO_DIR/manage.py collectstatic --noinput'"
-python "$OPENSHIFT_REPO_DIR"/manage.py collectstatic --noinput
+python "$OPENSHIFT_REPO_DIR"/manage.py collectstatic --noinput --ignore src

@@ -1,0 +1,50 @@
+
+.cv_technology_list {
+    > dt {
+        font-weight: bold;
+        font-style: italic;
+    }
+}
+
+
+// ➟ ➠ cool fading arrow
+// ➤
+
+.cv_process_list {
+    > li {
+        line-height: 1.3em;
+        list-style-type: none;
+        position: relative;
+
+        &::before {
+            content: '➟';
+            font-size: 2em;
+            position: absolute;
+            left: -1em;
+            // line-height: 1em;
+        }
+    }
+}
+
+.cv_position_header {
+
+    > h3 {
+        margin-bottom: 0.25em;
+    }
+
+    > p {
+        margin: 0
+    }
+
+    &:first-child {
+        margin-bottom: 0;
+    }
+
+    &:last-child {
+        margin-top: 0;
+    }
+}
+
+.cv_position_detail_list {
+    padding-left: 1.5em;
+}

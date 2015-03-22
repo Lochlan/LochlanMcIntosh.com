@@ -1,0 +1,43 @@
+
+.transitioner_container {
+    perspective: 800px;
+    perspective-origin: 50% 0%;
+    position: relative;
+    z-index: 0;
+}
+
+.transitioner_view {
+    // background: white;
+    transition: all 0.4s ease-in;
+
+    padding: 20px;
+}
+
+.transitioner_view-active {
+    @extend .transitioner_view;
+    // transform-origin: 50% 0%;
+    transform-origin: 0% 50%;
+
+    // outgoing animation?
+    &.transitioner_view_animate {
+        opacity: 0;
+        transform-style: preserve-3d;
+        transform: rotateY(120deg);
+    }
+}
+
+.transitioner_view-incoming {
+    @extend .transitioner_view;
+    opacity: 0;
+    position: absolute;
+    // top: 600px;
+    top: 0;
+    left: 100%;
+    width: 100%;
+
+    &.transitioner_view_animate {
+        opacity: 1;
+        top: 0;
+        left: 0;
+    }
+}
