@@ -1,8 +1,10 @@
 define([
+    'underscore',
     'backbone',
     'models/transitioner',
     'templates/transitioner',
-], function (Backbone, Model, template) {
+    'views/static',
+], function (_, Backbone, Model, template, StaticView) {
     'use strict';
 
     // TODO consider using Modernizr instead of this function
@@ -26,10 +28,17 @@ define([
 
     var TransitionerView = Backbone.View.extend({
 
-        model: new Model(),
+        model: undefined,
         template: template,
 
         initialize: function () {
+            // set inital view to whatever is already on the page
+            this.model = new Model({
+                active_view: new StaticView({
+                    template: _.template(this.$('[data-backbone-transitioner-active]').html() || ''),
+                }),
+            });
+
             this.$el.addClass('transitioner_container');
         },
 

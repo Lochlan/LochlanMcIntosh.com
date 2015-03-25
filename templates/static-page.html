@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div
+        class="transitioner_view-active"
+        data-backbone-transitioner-active
+    >
+        {% include "partials/static-pages/"|add:included_template|add:".html" %}
+    </div>
+    <div
+        class="transitioner_view-incoming"
+        data-backbone-transitioner-incoming
+    ></div>
+{% endblock %}
