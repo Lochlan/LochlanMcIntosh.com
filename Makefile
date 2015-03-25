@@ -28,8 +28,17 @@ endef
 SRC_STATIC_PATH = static/src
 BUILD_STATIC_PATH = static
 
+SRC_DJANGO_TEMPLATES_PATH = templates/partials/static-pages
+SRC_DJANGO_TEMPLATES = $(shell find $(SRC_DJANGO_TEMPLATES_PATH) -type f -name '*.html')
+BUILD_DJANGO_TEMPLATES_PATH = $(SRC_STATIC_PATH)/handlebars
+BUILD_DJANGO_TEMPLATES = $(subst \
+	$(SRC_DJANGO_TEMPLATES_PATH),\
+	$(BUILD_DJANGO_TEMPLATES_PATH),\
+	$(SRC_DJANGO_TEMPLATES:.html=.hbs)\
+	)
+
 SRC_HBS_PATH = $(SRC_STATIC_PATH)/handlebars
-SRC_HBS = $(shell find $(SRC_HBS_PATH) -type f -name '*.hbs')
+SRC_HBS = $(shell find $(SRC_HBS_PATH) -type f -name '*.hbs') $(BUILD_DJANGO_TEMPLATES)
 BUILD_HBS_PATH = $(SRC_STATIC_PATH)/js/templates
 BUILD_HBS = $(subst $(SRC_HBS_PATH),$(BUILD_HBS_PATH),$(SRC_HBS:.hbs=.js))
 
@@ -70,6 +79,7 @@ build: $(BUILD_HBS) $(BUILD_CSS) $(BUILD_JS)
 clean:
 	rm -rfv\
 		$(BUILD_CSS_PATH)\
+		$(BUILD_DJANGO_TEMPLATES)\
 		$(BUILD_FONTS_PATH)\
 		$(BUILD_HBS_PATH)\
 		$(BUILD_JS_PATH)\
@@ -94,6 +104,9 @@ SASS = $(shell bundle show sass)/bin/sass
 $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $(SRC_SCSS_VENDOR) makedeps/gemfile.d
 	mkdir -p "$(@D)"
 	$(SASS) --style compressed --load-path $(SRC_SCSS_PATH) $< $@
+
+$(BUILD_DJANGO_TEMPLATES_PATH)/%.hbs: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
+	cp $? $@
 
 $(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules/.bin/handlebars
 	mkdir -p "$(@D)"
