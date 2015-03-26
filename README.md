@@ -56,8 +56,11 @@ And tested using:
 ## Building and Testing the Front End
 
 ```bash
-# To install dependencies, lint, test, and compile from source:
+# "Dev" build: install all dependencies, lint, test, and compile from source:
 make
+
+# "Production" build: install production dependencies and compile from source:
+env PRODUCTION=1 make
 
 # To delete compiled files:
 make clean

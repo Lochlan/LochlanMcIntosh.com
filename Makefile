@@ -72,7 +72,11 @@ SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 
 # targets
 
+ifdef PRODUCTION
+all: build
+else
 all: lint test build
+endif
 
 build: $(BUILD_HBS) $(BUILD_CSS) $(BUILD_JS)
 
@@ -103,7 +107,11 @@ test: $(SRC_JS_VENDOR) $(BUILD_HBS) node_modules/karma/bin/karma
 SASS = $(shell bundle show sass)/bin/sass
 $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $(SRC_SCSS_VENDOR) makedeps/gemfile.d
 	mkdir -p "$(@D)"
-	$(SASS) --style compressed --load-path $(SRC_SCSS_PATH) $< $@
+ifdef PRODUCTION
+	$(SASS) --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none $< $@
+else
+	$(SASS) --style nested --load-path $(SRC_SCSS_PATH) $< $@
+endif
 
 $(BUILD_DJANGO_TEMPLATES_PATH)/%.hbs: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
@@ -138,7 +146,11 @@ $(SRC_SCSS_FONTS): node_modules/.bin/webfont-dl
 		--out $@
 
 node_modules: package.json
+ifdef PRODUCTION
+	npm install --production
+else
 	npm install
+endif
 	touch $@
 node_modules/%: node_modules
 	touch $@

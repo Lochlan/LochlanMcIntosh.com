@@ -18,4 +18,4 @@ _SHOW_SETUP_PATH_MESSAGES="true" setup_path_for_custom_node_version
 cd "$OPENSHIFT_REPO_DIR"
 HOME=`pwd` # hack, fixes error about insufficient priviledges when running npm
 export TMPDIR="/tmp"
-make build
+env PRODUCTION=1 make
