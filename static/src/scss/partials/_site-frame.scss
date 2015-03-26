@@ -1,13 +1,19 @@
 
 .header {
-
+    @media screen and (max-width: $break-small-max) {
+        text-align: center;
+    }
 }
 
 .title {
     color: deeppink;
     font-family: 'Lato', sans-serif;
-    font-size: 72px;
+    font-size: 8vw;
     margin: 20px 0 10px 0;
+
+    @media screen and (min-width: $break-large) {
+        font-size: 72px;
+    }
 }
 
 .title_first_name {
@@ -22,16 +28,28 @@
 .subtitle {
     margin-bottom: 20px;
     margin-top: 10px;
+
+    @media screen and (max-width: $break-xsmall-max) {
+        font-size: 14px;
+    }
 }
 
 .nav {
     background: rgba(0,0,0,0.9);
     border: 1px solid black;
     font-family: 'Lato', sans-serif;
-    font-size: 22px;
+    font-size: 4vw;
     font-weight: 300;
     margin: 0;
     padding: 0 0.5em;
+
+    @media screen and (max-width: $break-xsmall-max) {
+        font-weight: 300;
+    }
+
+    @media screen and (min-width: $break-large) {
+        font-size: 22px;
+    }
 
     > li {
         display: inline-block;
@@ -56,7 +74,9 @@
 }
 
 .content {
-    text-align: justify;
+    @media screen and (min-width: $break-large) {
+        text-align: justify;
+    }
 }
 
 .footer {

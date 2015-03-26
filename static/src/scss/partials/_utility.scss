@@ -2,3 +2,9 @@
 .text_center {
     text-align: center;
 }
+
+.hide_for_small {
+    @media screen and (max-width: $break-small-max) {
+        display: none;
+    }
+}
