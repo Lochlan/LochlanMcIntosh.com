@@ -1,14 +1,10 @@
 
 .cv_technology_list {
     > dt {
-        font-weight: bold;
         font-style: italic;
+        font-weight: bold;
     }
 }
-
-
-// ➟ ➠ cool fading arrow
-// ➤
 
 .cv_process_list {
     > li {
@@ -19,9 +15,8 @@
         &::before {
             content: '➟';
             font-size: 2em;
-            position: absolute;
             left: -1em;
-            // line-height: 1em;
+            position: absolute;
         }
     }
 }
