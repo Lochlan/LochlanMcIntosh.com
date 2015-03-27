@@ -69,7 +69,7 @@ make clean
 make distclean
 ```
 
-See [the Makefile](https://github.com/Lochlan/LochlanMcIntosh.com-frontend/blob/master/Makefile) for additional, more granular targets.  Using it requires:
+See [the Makefile](https://github.com/Lochlan/LochlanMcIntosh.com/blob/master/Makefile) for additional, more granular targets.  Using it requires:
 
 - [GNU Make](http://www.gnu.org/software/make/), preferably 3.81 or better
 - [Node.js](http://nodejs.org/) stable and [npm](https://www.npmjs.com/) to install and run most of the build dependencies
