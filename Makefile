@@ -91,6 +91,7 @@ clean:
 
 distclean: clean
 	rm -rfv\
+		.bundle\
 		$(SRC_JS_VENDOR_PATH)\
 		$(SRC_SCSS_VENDOR_PATH)\
 		node_modules\
@@ -157,7 +158,11 @@ node_modules/%: node_modules
 
 makedeps/gemfile.d: Gemfile
 	mkdir -p "$(@D)"
+ifdef PRODUCTION
+	bundle install --without development
+else
 	bundle install
+endif
 	touch $@
 
 JSHINTIGNORE_ENTRIES = $(shell cat .jshintignore | sed 's/^\s*//' | sed '/^\#/d')
