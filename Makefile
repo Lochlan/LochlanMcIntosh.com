@@ -73,13 +73,21 @@ SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 VENV_DIRECTORY = env
 VENV_ACTIVATE = $(VENV_DIRECTORY)/bin/activate
 
-# targets
 
 ifdef PRODUCTION
-all: build
+	ALL_PREREQUISITES = build
+	BUNDLER_FLAGS = --without development
+	NPM_FLAGS = --production
+	SASS_FLAGS = --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none
 else
-all: venv lint test build
+	ALL_PREREQUISITES = venv lint test build
+	SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 endif
+
+
+# targets
+
+all: $(ALL_PREREQUISITES)
 
 build: $(BUILD_HBS) $(BUILD_CSS) $(BUILD_JS)
 
@@ -120,11 +128,7 @@ venv: $(VENV_ACTIVATE)
 SASS = $(shell bundle show sass)/bin/sass
 $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $(SRC_SCSS_VENDOR) makedeps/gemfile.d
 	mkdir -p "$(@D)"
-ifdef PRODUCTION
-	$(SASS) --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none $< $@
-else
-	$(SASS) --style nested --load-path $(SRC_SCSS_PATH) $< $@
-endif
+	$(SASS) $(SASS_FLAGS) $< $@
 
 $(BUILD_DJANGO_TEMPLATES_PATH)/%.hbs: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
@@ -164,22 +168,14 @@ $(VENV_ACTIVATE): requirements.txt
 	touch $@
 
 node_modules: package.json
-ifdef PRODUCTION
-	npm install --production
-else
-	npm install
-endif
+	npm install $(NPM_FLAGS)
 	touch $@
 node_modules/%: node_modules
 	touch $@
 
 makedeps/gemfile.d: Gemfile
 	mkdir -p "$(@D)"
-ifdef PRODUCTION
-	bundle install --without development
-else
-	bundle install
-endif
+	bundle install $(BUNDLER_FLAGS)
 	touch $@
 
 JSHINTIGNORE_ENTRIES = $(shell cat .jshintignore | sed 's/^\s*//' | sed '/^\#/d')
