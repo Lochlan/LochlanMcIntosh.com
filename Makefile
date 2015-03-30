@@ -106,6 +106,8 @@ distclean: clean
 		$(SRC_JS_VENDOR_PATH)\
 		$(SRC_SCSS_VENDOR_PATH)\
 		$(VENV_DIRECTORY)\
+		db.sqlite3\
+		makedeps\
 		node_modules\
 
 lint: lint-js lint-travis
