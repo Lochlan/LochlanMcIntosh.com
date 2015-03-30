@@ -100,7 +100,7 @@ lint: lint-js lint-travis
 lint-js: makedeps/jshint.d
 lint-travis: makedeps/travis-lint.d
 
-test: $(SRC_JS_VENDOR) $(BUILD_HBS) node_modules/karma/bin/karma
+test: $(SRC_JS_VENDOR) $(BUILD_HBS) node_modules
 	./node_modules/karma/bin/karma start
 
 # file rules
@@ -117,15 +117,15 @@ endif
 $(BUILD_DJANGO_TEMPLATES_PATH)/%.hbs: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
 
-$(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules/.bin/handlebars
+$(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/handlebars $< --output $@ --amd
 
-$(BUILD_JS_PATH)/%.js: $(SRC_JS_VENDOR) $(SRC_JS) node_modules/.bin/r.js
+$(BUILD_JS_PATH)/%.js: $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/r.js -o build-config.js name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
 
-$(BUILD_JS_PATH)/require.js: node_modules/requirejs/require.js
+$(BUILD_JS_PATH)/require.js: node_modules
 	mkdir -p "$(@D)"
 	cp ./node_modules/requirejs/require.js $@
 
@@ -139,7 +139,7 @@ $(SRC_JS_VENDOR) $(SRC_SCSS_VENDOR):
 	mkdir -p "$(@D)"
 	cp $? $@
 
-$(SRC_SCSS_FONTS): node_modules/.bin/webfont-dl
+$(SRC_SCSS_FONTS): node_modules
 	./node_modules/.bin/webfont-dl\
 		"http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic|Lato:300,400,700"\
 		--css-rel=/$(BUILD_FONTS_PATH)\
@@ -168,7 +168,7 @@ endif
 JSHINTIGNORE_ENTRIES = $(shell cat .jshintignore | sed 's/^\s*//' | sed '/^\#/d')
 JSHINT_IGNORE_PATTERNS = $(call get-jshintignore-patterns,$(JSHINTIGNORE_ENTRIES))
 JSHINT_JS_DEPENDENCIES = $(filter-out $(JSHINT_IGNORE_PATTERNS), $(SRC_JS))
-makedeps/jshint.d: .jshintignore .jshintrc $(JSHINT_JS_DEPENDENCIES) node_modules/.bin/jshint
+makedeps/jshint.d: .jshintignore .jshintrc $(JSHINT_JS_DEPENDENCIES) node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/jshint $(SRC_JS_PATH)
 	touch $@
