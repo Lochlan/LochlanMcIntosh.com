@@ -4,7 +4,7 @@ define([
     'use strict';
 
     // TODO build this out!
-    var Contact = Backbone.Model.extend({
+    var Message = Backbone.Model.extend({
         defaults: {
             email: '',
             subject: '',
@@ -12,5 +12,5 @@ define([
         },
     });
 
-    return Contact;
+    return Message;
 });

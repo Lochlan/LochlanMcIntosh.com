@@ -1,6 +1,6 @@
 define([
     'backbone',
-    'models/contact',
+    'models/message',
     'templates/contact',
 ], function (Backbone, Model, template) {
     'use strict';
