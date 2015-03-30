@@ -70,12 +70,15 @@ SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 	underscore.js\
 	)
 
+VENV_DIRECTORY = env
+VENV_ACTIVATE = $(VENV_DIRECTORY)/bin/activate
+
 # targets
 
 ifdef PRODUCTION
 all: build
 else
-all: lint test build
+all: venv lint test build
 endif
 
 build: $(BUILD_HBS) $(BUILD_CSS) $(BUILD_JS)
@@ -94,14 +97,23 @@ distclean: clean
 		.bundle\
 		$(SRC_JS_VENDOR_PATH)\
 		$(SRC_SCSS_VENDOR_PATH)\
+		$(VENV_DIRECTORY)\
 		node_modules\
 
 lint: lint-js lint-travis
 lint-js: makedeps/jshint.d
 lint-travis: makedeps/travis-lint.d
 
+migrate: venv
+	. $(VENV_ACTIVATE); python manage.py migrate
+
+runserver: venv migrate build
+	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000
+
 test: $(SRC_JS_VENDOR) $(BUILD_HBS) node_modules
 	./node_modules/karma/bin/karma start
+
+venv: $(VENV_ACTIVATE)
 
 # file rules
 
@@ -145,6 +157,11 @@ $(SRC_SCSS_FONTS): node_modules
 		--css-rel=/$(BUILD_FONTS_PATH)\
 		--font-out=$(BUILD_FONTS_PATH)\
 		--out $@
+
+$(VENV_ACTIVATE): requirements.txt
+	test -d $(VENV_DIRECTORY) || virtualenv --no-site-packages --python=$(which python3) $(VENV_DIRECTORY)
+	. $@; pip install --requirement requirements.txt --upgrade
+	touch $@
 
 node_modules: package.json
 ifdef PRODUCTION

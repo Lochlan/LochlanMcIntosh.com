@@ -19,58 +19,26 @@ And tested using:
 
 # Development
 
-## Set Up and Run Django
-
-1. Make sure that python3, pip, and virtualenv are installed
-
-1. Create a virtualenv
-
-    ```bash
-    virtualenv --no-site-packages --python=$(which python3) env
-    ```
-
-1. Activate virtualenv
-
-    ```bash
-    source env/bin/activate
-    ```
-
-1. Install requirements
-
-    ```bash
-    pip install --requirement requirements.txt --upgrade
-    ```
-
-1. Run migrations
-
-    ```bash
-    python manage.py migrate
-    ```
-
-1. Run server
-
-    ```bash
-    python manage.py runserver 0.0.0.0:8000
-    ```
-
-## Building and Testing the Front End
-
 ```bash
-# "Dev" build: install all dependencies, lint, test, and compile from source:
+# Dev build: install all dependencies, lint, test, and compile
 make
 
-# "Production" build: install production dependencies and compile from source:
+# Production build: install production dependencies and compile
 env PRODUCTION=1 make
 
-# To delete compiled files:
+# Run the development webserver
+make runserver
+
+# Delete compiled files
 make clean
 
-# To start over from scratch (also deleting vendor files, and `node_modules`):
+# Start over from scratch and delete everything
 make distclean
 ```
 
 See [the Makefile](https://github.com/Lochlan/LochlanMcIntosh.com/blob/master/Makefile) for additional, more granular targets.  Using it requires:
 
 - [GNU Make](http://www.gnu.org/software/make/), preferably 3.81 or better
-- [Node.js](http://nodejs.org/) stable and [npm](https://www.npmjs.com/) to install and run most of the build dependencies
-- [Ruby](https://www.ruby-lang.org/) and [Bundler](http://bundler.io/) to install and run Sass
+- [Python 3](https://www.python.org/), [pip](https://pip.pypa.io/), and [virtualenv](https://virtualenv.pypa.io/)
+- [Node.js](http://nodejs.org/) stable and [npm](https://www.npmjs.com/)
+- [Ruby](https://www.ruby-lang.org/) and [Bundler](http://bundler.io/)
