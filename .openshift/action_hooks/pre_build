@@ -11,3 +11,7 @@ source "$OPENSHIFT_REPO_DIR/.openshift/lib/utils"
 
 #  Ensure custom node version if not installed.
 ensure_node_is_installed
+
+# export commit hash for versioning static files
+cat ${OPENSHIFT_HOMEDIR}git/django.git/refs/heads/${OPENSHIFT_DEPLOYMENT_BRANCH} \
+    > ${OPENSHIFT_HOMEDIR}.env/user_vars/DEPLOYED_GIT_COMMIT_HASH

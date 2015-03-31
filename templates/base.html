@@ -14,7 +14,7 @@
 
     <link rel="canonical" href="http://www.lochlanmcintosh.com{{ request.path }}">
 
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css?v={{ version_hash }}">
 
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -58,6 +58,9 @@
         >fork me on github</a>
     </footer>
 
+    <script>
+        var require = { urlArgs: 'v={{ version_hash }}' };
+    </script>
     <script
         data-main="/static/js/main"
         src="/static/js/vendor/require.js"
