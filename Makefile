@@ -81,6 +81,7 @@ ifdef PRODUCTION
 	SASS_FLAGS = --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none
 else
 	ALL_PREREQUISITES = venv lint test build
+	R.JS_FLAGS = optimize=none
 	SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 endif
 
@@ -141,7 +142,7 @@ $(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules
 
 $(BUILD_JS_PATH)/%.js: $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 	mkdir -p "$(@D)"
-	./node_modules/.bin/r.js -o build-config.js name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
+	./node_modules/.bin/r.js -o build-config.js $(R.JS_FLAGS) name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
 
 $(BUILD_JS_PATH)/require.js: node_modules
 	mkdir -p "$(@D)"
