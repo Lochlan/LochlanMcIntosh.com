@@ -3,14 +3,17 @@ define([
     'underscore',
     'views/transitioner',
     'views/static',
-], function ($, _, TransitionerView, StaticView) {
+    'templates/transitioner',
+], function ($, _, TransitionerView, StaticView, transitionerTemplate) {
     'use strict';
 
     describe('transitioner view', function () {
         var view;
 
         beforeEach(function() {
-            $('<section id="transitionerView"></section>').appendTo('body');
+            $('<section id="transitionerView">' + transitionerTemplate() + '</section>')
+                .appendTo('body');
+
             view = new TransitionerView({
                 el: '#transitionerView',
             });
@@ -31,6 +34,34 @@ define([
 
             it('should have a template', function() {
                 expect(view.template).toBeDefined();
+            });
+
+            it('should have transitioner_container class on el', function () {
+                expect(view.el.classList.contains('transitioner_container')).toBe(true);
+            });
+
+            describe('with a specified active view', function () {
+                var activeView;
+
+                beforeEach(function() {
+                    activeView = new StaticView({
+                        template: _.template('<h1>Hello, world!</h1>'),
+                    });
+
+                    view = new TransitionerView({
+                        active_view: activeView,
+                        el: '#transitionerView',
+                    });
+                });
+
+                it('should set that active view in the model', function () {
+                    expect(view.model.get('active_view')).toBe(activeView);
+                });
+
+                it("should set the active view's el to [data-backbone-transitioner-active]", function () {
+                    expect(view.model.get('active_view').el)
+                        .toBe(view.el.querySelector('[data-backbone-transitioner-active]'));
+                });
             });
         });
 

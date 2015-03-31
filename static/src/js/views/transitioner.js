@@ -31,13 +31,19 @@ define([
         model: undefined,
         template: template,
 
-        initialize: function () {
-            // set inital view to whatever is already on the page
+        initialize: function (options) {
+            options = options || {};
+
+            // set inital view to options.active_view or whatever is already on the page
             this.model = new Model({
-                active_view: new StaticView({
+                active_view: options.active_view || new StaticView({
                     template: _.template(this.$('[data-backbone-transitioner-active]').html() || ''),
                 }),
             });
+
+            // set element on active view
+            this.model.get('active_view')
+                .setElement(this.$('[data-backbone-transitioner-active]'));
 
             this.$el.addClass('transitioner_container');
         },
