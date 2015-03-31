@@ -11,15 +11,17 @@ define([
 
         routes: {
             '(/)': 'home',
-            'about(/)': 'transitioner',
+            'about(/)': 'staticPage',
             'contact(/)': 'contact',
-            'home(/)': 'transitioner',
-            'portfolio(/)': 'transitioner',
-            'resume(/)': 'transitioner',
+            'home(/)': 'staticPage',
+            'portfolio(/)': 'staticPage',
+            'resume(/)': 'staticPage',
         },
 
+        // views that should persist across page transitions
         views: {
-            transitioner: new TransitionerView({ el: '.js-Backbone'}),
+            contact: undefined,
+            transitioner: undefined,
         },
 
         initialize: function () {
@@ -36,34 +38,36 @@ define([
             });
         },
 
-        initialSiteLoad: true,
-        execute: function(callback, args) {
-            // don't trigger route on initial site load
-            if (this.initialSiteLoad) {
-                this.initialSiteLoad = false;
+        transition: function (view) {
+            // handle initial page load
+            if (!this.views.transitioner) {
+                this.views.transitioner = new TransitionerView({
+                    active_view: view,
+                    el: '.js-Backbone',
+                });
                 return;
             }
-            if (callback) {
-                callback.apply(this, args);
-            }
+
+            this.views.transitioner.transition(view);
         },
 
         // route methods
 
         contact: function () {
-            this.views.transitioner.transition(new ContactView());
+            if (!this.views.contact) {
+                this.views.contact = new ContactView();
+            }
+            this.transition(this.views.contact);
         },
 
         home: function () {
-            this.views.transitioner.transition(new StaticView({
-                template: 'home',
-            }));
+            this.staticPage('home');
         },
 
-        transitioner: function () {
-            this.views.transitioner.transition(new StaticView({
+        staticPage: function (templateName) {
+            this.transition(new StaticView({
                 // remove any trailing slashes
-                template: Backbone.history.fragment.replace(/[\/]+$/, ''),
+                template: templateName || Backbone.history.fragment.replace(/[\/]+$/, ''),
             }));
         },
 
