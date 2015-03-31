@@ -1,1 +1,46 @@
-<p>Please contact me for more information at <a href="mailto:info@lochlanmcintosh.com">info@lochlanmcintosh.com</a></p>
+<p>Please contact me for more information using the below form, or by e-mailing me directly at <a href="mailto:info@lochlanmcintosh.com">info@lochlanmcintosh.com</a>.</p>
+
+<form>
+    <p>
+        <input
+            name="name"
+            placeholder="Name"
+            required
+            type="text"
+        >
+    </p>
+
+    <p>
+        <input
+            name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            placeholder="E-Mail Address"
+            required
+            type="email"
+        >
+    </p>
+
+    <p>
+        <input
+            name="subject"
+            placeholder="Subject"
+            required
+            type="text"
+        >
+    </p>
+
+    <p>
+        <textarea
+            name="text"
+            placeholder="Message"
+            required
+        ></textarea>
+    </p>
+
+    <p>
+        <input
+            type="submit"
+            value="Send Message"
+        >
+    </p>
+</form>

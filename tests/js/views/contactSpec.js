@@ -1,6 +1,7 @@
 define([
+    'underscore',
     'views/contact',
-], function (ContactView) {
+], function (_, ContactView) {
     'use strict';
 
     describe('contact view', function () {
@@ -31,6 +32,22 @@ define([
 
             it('should have content in el', function () {
                 expect(view.el.innerHTML).not.toEqual('');
+            });
+
+            it ('should have form fields', function () {
+                expect(view.$('form [name]').length).not.toEqual(0);
+            });
+
+            it ('should have empty form fields', function () {
+                _.map(view.$('form [name]'), function (input) {
+                    expect(input.value).toEqual('');
+                });
+            });
+
+            it ('should have placeholders on all form fields', function () {
+                _.map(view.$('form [name]'), function (input) {
+                    expect(input.placeholder).not.toEqual('');
+                });
             });
         });
     });

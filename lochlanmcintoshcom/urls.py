@@ -14,5 +14,7 @@ urlpatterns = patterns('',
     url(r'^resume/$', TemplateView.as_view(template_name="static-page.html"),
             { 'included_template': 'resume' }, name='resume'),
 
+    url(r'^api/', include('lochlanmcintoshcom.api.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -40,6 +40,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djrill',
+    'rest_framework',
+    'lochlanmcintoshcom.api',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,6 +55,31 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'lochlanmcintoshcom.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_THROTTLE_CLASSES': (
+        'lochlanmcintoshcom.api.throttles.BurstRateThrottle',
+        'lochlanmcintoshcom.api.throttles.SustainedRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'burst': '60/min',
+        'sustained': '1000/day'
+    },
+    'PAGE_SIZE': 10
+}
+
+# Email
+
+try:
+    MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
+except KeyError:
+    MANDRILL_API_KEY = ''
+
+EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
+DEFAULT_FROM_EMAIL = 'www@lochlanmcintosh.com'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

@@ -3,13 +3,16 @@ define([
 ], function (Backbone) {
     'use strict';
 
-    // TODO build this out!
     var Message = Backbone.Model.extend({
         defaults: {
             email: '',
+            name: '',
             subject: '',
-            message: '',
+            text: '',
         },
+
+        urlRoot: '/api/contact/',
+
     });
 
     return Message;

@@ -8,17 +8,19 @@ define([
 
         beforeEach(function() {
             message = new Message({
-                email: 'test.user@gmail.com',
+                email: 'test.user@dev.lochlanmcintosh.com',
+                name: 'Test User',
                 subject: 'Good Luck',
-                message: 'I hope all your tests are passing!',
+                text: 'I hope all your tests are passing!',
             });
         });
 
-        it('has default properties', function() {
+        it('has default properties name, email, subject, and text', function() {
             expect(message.defaults).toBeDefined();
+            expect(message.defaults.name).toBeDefined();
             expect(message.defaults.email).toBeDefined();
             expect(message.defaults.subject).toBeDefined();
-            expect(message.defaults.message).toBeDefined();
+            expect(message.defaults.text).toBeDefined();
         });
     });
 

@@ -42,3 +42,8 @@ See [the Makefile](https://github.com/Lochlan/LochlanMcIntosh.com/blob/master/Ma
 - [Python 3](https://www.python.org/), [pip](https://pip.pypa.io/), and [virtualenv](https://virtualenv.pypa.io/)
 - [Node.js](http://nodejs.org/) stable and [npm](https://www.npmjs.com/)
 - [Ruby](https://www.ruby-lang.org/) and [Bundler](http://bundler.io/)
+
+# Configuration
+
+Environment variables:
+- `MANDRILL_API_KEY` - Required for sending e-mails via Mandrill
