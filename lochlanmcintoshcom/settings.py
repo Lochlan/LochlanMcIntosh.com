@@ -134,5 +134,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.tz',
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
-    'lochlanmcintosh.context_processors.environ',
+    'lochlanmcintoshcom.lochlanmcintosh.context_processors.environ',
 )
