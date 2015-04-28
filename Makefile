@@ -90,7 +90,7 @@ endif
 
 all: $(ALL_PREREQUISITES)
 
-build: $(BUILD_HBS) $(BUILD_CSS) $(BUILD_JS)
+build: $(BUILD_CSS) $(BUILD_JS)
 
 clean:
 	rm -rfv\
@@ -140,7 +140,7 @@ $(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/handlebars $< --output $@ --amd
 
-$(BUILD_JS_PATH)/%.js: $(SRC_JS_VENDOR) $(SRC_JS) node_modules
+$(BUILD_JS_PATH)/%.js: $(BUILD_HBS) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/r.js -o build-config.js $(R.JS_FLAGS) name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
 
