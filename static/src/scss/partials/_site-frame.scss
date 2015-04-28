@@ -1,4 +1,16 @@
 
+.page {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 5px 10px;
+
+    @media screen and (min-width: $break-large) {
+        padding: 10px 20px;
+    }
+}
+
 .header {
     @media screen and (max-width: $break-small-max) {
         text-align: center;

@@ -28,35 +28,36 @@
 </head>
 
 <body>
+    <section class="page">
+        <header class="header">
+            <h1 class="title">
+                <span class="title_first_name">LOCHLAN</span>
+                <span class="title_last_name">McINTOSH</span>
+            </h1>
 
-    <header class="header">
-        <h1 class="title">
-            <span class="title_first_name">LOCHLAN</span>
-            <span class="title_last_name">McINTOSH</span>
-        </h1>
+            <p class="subtitle"><em>Software engineer <span class="hide_for_small">specializing in front-end web development</span> &nbsp; ❧ &nbsp; <span class="hide_for_small">Located in</span> Portland, Oregon</em></p>
+        </header>
 
-        <p class="subtitle"><em>Software engineer <span class="hide_for_small">specializing in front-end web development</span> &nbsp; ❧ &nbsp; <span class="hide_for_small">Located in</span> Portland, Oregon</em></p>
-    </header>
+        <nav>
+            <ul class="nav">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'resume' %}">Résumé</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
 
-    <nav>
-        <ul class="nav">
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'resume' %}">Résumé</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
-        </ul>
-    </nav>
+        <section class="js-Backbone content">
+            {% block content %}{% endblock %}
+        </section>
 
-    <section class="js-Backbone content">
-        {% block content %}{% endblock %}
+        <footer class="footer">
+            <a
+                href="https://github.com/Lochlan/LochlanMcIntosh.com"
+                target="_blank"
+            >fork me on github</a>
+        </footer>
     </section>
-
-    <footer class="footer">
-        <a
-            href="https://github.com/Lochlan/LochlanMcIntosh.com"
-            target="_blank"
-        >fork me on github</a>
-    </footer>
 
     <script>
         var require = { urlArgs: 'v={{ version_hash }}' };
