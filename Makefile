@@ -77,6 +77,7 @@ VENV_ACTIVATE = $(VENV_DIRECTORY)/bin/activate
 ifdef PRODUCTION
 	ALL_PREREQUISITES = build
 	BUNDLER_FLAGS = --without development
+	NO_COMMENT = ./node_modules/.bin/no-comment $@ $@
 	NPM_FLAGS = --production
 	SASS_FLAGS = --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none
 else
@@ -143,6 +144,7 @@ $(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules
 $(BUILD_JS_PATH)/%.js: $(BUILD_HBS) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/r.js -o build-config.js $(R.JS_FLAGS) name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
+	$(NO_COMMENT)
 
 $(BUILD_JS_PATH)/require.js: node_modules
 	mkdir -p "$(@D)"
