@@ -74,14 +74,27 @@ define([
                 expect(view.el.innerHTML).not.toEqual('');
             });
 
-            it('should not have content in [data-backbone-transitioner-active]', function () {
-                expect(view.el.querySelector('[data-backbone-transitioner-active]').innerHTML)
-                    .toEqual('');
+            describe('active view', function () {
+                it('should not have content', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-active]').innerHTML
+                    ).toEqual('');
+                });
             });
 
-            it('should not have content in [data-backbone-transitioner-incoming]', function () {
-                expect(view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML)
-                    .toEqual('');
+            describe('incoming view', function () {
+                it('should not have content', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML
+                    ).toEqual('');
+                });
+
+                it('should have the "hide" class', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-incoming]')
+                            .classList.contains('hide')
+                    ).toEqual(true);
+                });
             });
         });
 
@@ -110,34 +123,38 @@ define([
                 expect(view.el.innerHTML).not.toEqual('');
             });
 
-            it('should have content in [data-backbone-transitioner-incoming]', function () {
-                expect(
-                    view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML
-                ).not.toEqual('');
-            });
-
-            it('should have content in [data-backbone-transitioner-incoming] equal to the template content', function () {
-                expect(
-                    view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML
-                ).toEqual(templateContent);
-            });
-
             it('should call startTransitionAnimation', function () {
                 expect(view.startTransitionAnimation).toHaveBeenCalled();
             });
 
-            it('should have an active_view with class "transitioner_view_animate"', function () {
-                expect(
-                    view.el.querySelector('[data-backbone-transitioner-active]')
-                        .classList.contains('transitioner_view_animate')
-                ).toEqual(true);
+            describe('active view', function () {
+                it('should have class "transitioner_view_animate"', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-active]')
+                            .classList.contains('transitioner_view_animate')
+                    ).toEqual(true);
+                });
             });
 
-            it('should have an incoming_view with class "transitioner_view_animate"', function () {
-                expect(
-                    view.el.querySelector('[data-backbone-transitioner-incoming]')
-                        .classList.contains('transitioner_view_animate')
-                ).toEqual(true);
+            describe('incoming view', function () {
+                it('should have content', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML
+                    ).not.toEqual('');
+                });
+
+                it('should have content equal to the template content', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML
+                    ).toEqual(templateContent);
+                });
+
+                it('should have class "transitioner_view_animate"', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-incoming]')
+                            .classList.contains('transitioner_view_animate')
+                    ).toEqual(true);
+                });
             });
         });
 
@@ -168,22 +185,26 @@ define([
                 expect(view.el.innerHTML).not.toEqual('');
             });
 
-            it('should have content in [data-backbone-transitioner-active]', function () {
-                expect(
-                    view.el.querySelector('[data-backbone-transitioner-active]').innerHTML
-                ).not.toEqual('');
+            describe('active view', function () {
+                it('should have content', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-active]').innerHTML
+                    ).not.toEqual('');
+                });
+
+                it('should have content equal to the template content', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-active]').innerHTML
+                    ).toEqual(templateContent);
+                });
             });
 
-            it('should have content in [data-backbone-transitioner-active] equal to the template content', function () {
-                expect(
-                    view.el.querySelector('[data-backbone-transitioner-active]').innerHTML
-                ).toEqual(templateContent);
-            });
-
-            it('should have no content in [data-backbone-transitioner-incoming]', function () {
-                expect(
-                    view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML
-                ).toEqual('');
+            describe('incoming view', function () {
+                it('should have no content', function () {
+                    expect(
+                        view.el.querySelector('[data-backbone-transitioner-incoming]').innerHTML
+                    ).toEqual('');
+                });
             });
         });
     });
