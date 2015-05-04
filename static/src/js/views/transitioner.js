@@ -71,6 +71,9 @@ define([
 
             this.render();
 
+            this.model.get('incoming_view')
+                .$el.removeClass('hide');
+
             // hack to trigger CSS transitions on newly-inserted DOM elements
             // without it elements will often render in a post-transition state
             window.setTimeout(this.startTransitionAnimation.bind(this), 20);

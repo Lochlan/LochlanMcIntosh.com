@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+.hide {
+    display: none;
+}
+
 .hide_for_small {
     @media screen and (max-width: $break-small-max) {
         display: none;
