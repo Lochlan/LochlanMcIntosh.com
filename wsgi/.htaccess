@@ -1,0 +1,5 @@
+RewriteEngine on
+
+# SHA1 versioned CSS and JS
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteRule ^(.*)\.[\da-z]{40}\.(css|js)$ $1.$2 [L]
