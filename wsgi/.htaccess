@@ -2,4 +2,17 @@ RewriteEngine on
 
 # SHA1 versioned CSS and JS
 RewriteCond %{REQUEST_FILENAME} !-s
-RewriteRule ^(.*)\.[\da-z]{40}\.(css|js)$ $1.$2 [L]
+RewriteRule ^(.*)\.[\da-z]{40}\.(css|js)$ $1.$2 [ENV=SHA1_VERSIONED:true,L]
+
+<FilesMatch "\.(css|js)$">
+    # 52 weeks, SHA1 versioned
+    Header set Cache-Control "max-age=31449600, public" env=REDIRECT_SHA1_VERSIONED
+
+    # 1 week, not SHA1 versioned
+    Header set Cache-Control "max-age=604800, public, must-revalidate" env=!REDIRECT_SHA1_VERSIONED
+</FilesMatch>
+
+<FilesMatch "\.(gif|ico|jpeg|jpg|pdf|png|svg)$">
+    # 1 week
+    Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
