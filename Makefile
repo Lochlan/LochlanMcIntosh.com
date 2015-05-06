@@ -146,7 +146,7 @@ $(BUILD_JS_PATH)/%.js: $(BUILD_HBS) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 	./node_modules/.bin/r.js -o build-config.js $(R.JS_FLAGS) name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
 	$(NO_COMMENT)
 
-$(BUILD_JS_PATH)/require.js: node_modules
+$(BUILD_JS_PATH)/vendor/require.js: node_modules
 	mkdir -p "$(@D)"
 	cp ./node_modules/requirejs/require.js $@
 
