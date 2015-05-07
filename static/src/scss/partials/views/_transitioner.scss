@@ -1,6 +1,8 @@
 
 .transitioner_container {
+    -webkit-perspective-origin: 50% 0%;
     perspective-origin: 50% 0%;
+    -webkit-perspective: 800px;
     perspective: 800px;
     position: relative;
     z-index: 0;
@@ -21,11 +23,14 @@
 
 .transitioner_view-active {
     @extend .transitioner_view;
+    -webkit-transform-origin: 0% 50%;
     transform-origin: 0% 50%;
 
     &.transitioner_view_animate {
         opacity: 0;
+        -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
+        -webkit-transform: rotateY(120deg);
         transform: rotateY(120deg);
     }
 }
