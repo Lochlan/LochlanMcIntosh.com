@@ -10,7 +10,7 @@ This website is powered by:
 - [Underscore.js](http://underscorejs.org/)
 - [jQuery](http://jquery.com/)
 - [Require.js](http://requirejs.org/)
-- [Handlebars](http://handlebarsjs.com/)
+- [Swig](http://paularmstrong.github.io/swig/)
 - [Sass](http://sass-lang.com/)
 
 And tested using:

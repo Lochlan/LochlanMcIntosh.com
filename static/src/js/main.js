@@ -6,9 +6,9 @@ require.config({
     },
     paths: {
         'backbone': 'vendor/backbone',
-        'handlebars.runtime': 'vendor/handlebars.runtime.amd',
         'jquery': 'vendor/jquery',
         'jquery-noconflict': 'lib/jquery-noconflict',
+        'swig': 'vendor/swig',
         'underscore': 'vendor/underscore',
     },
 });

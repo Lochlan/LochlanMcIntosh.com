@@ -30,17 +30,17 @@ BUILD_STATIC_PATH = static
 
 SRC_DJANGO_TEMPLATES_PATH = templates/partials/static-pages
 SRC_DJANGO_TEMPLATES = $(shell find $(SRC_DJANGO_TEMPLATES_PATH) -type f -name '*.html')
-BUILD_DJANGO_TEMPLATES_PATH = $(SRC_STATIC_PATH)/handlebars
+BUILD_DJANGO_TEMPLATES_PATH = $(SRC_STATIC_PATH)/swig
 BUILD_DJANGO_TEMPLATES = $(subst \
 	$(SRC_DJANGO_TEMPLATES_PATH),\
 	$(BUILD_DJANGO_TEMPLATES_PATH),\
-	$(SRC_DJANGO_TEMPLATES:.html=.hbs)\
+	$(SRC_DJANGO_TEMPLATES:.html=.swig)\
 	)
 
-SRC_HBS_PATH = $(SRC_STATIC_PATH)/handlebars
-SRC_HBS = $(shell find $(SRC_HBS_PATH) -type f -name '*.hbs') $(BUILD_DJANGO_TEMPLATES)
-BUILD_HBS_PATH = $(SRC_STATIC_PATH)/js/templates
-BUILD_HBS = $(subst $(SRC_HBS_PATH),$(BUILD_HBS_PATH),$(SRC_HBS:.hbs=.js))
+SRC_SWIG_PATH = $(SRC_STATIC_PATH)/swig
+SRC_SWIG = $(shell find $(SRC_SWIG_PATH) -type f -name '*.swig') $(BUILD_DJANGO_TEMPLATES)
+BUILD_SWIG_PATH = $(SRC_STATIC_PATH)/js/templates
+BUILD_SWIG = $(subst $(SRC_SWIG_PATH),$(BUILD_SWIG_PATH),$(SRC_SWIG:.swig=.js))
 
 SRC_JS_PATH = $(SRC_STATIC_PATH)/js
 SRC_JS = $(shell find $(SRC_JS_PATH) -type f -name '*.js')
@@ -64,9 +64,9 @@ SRC_SCSS_VENDOR = $(SRC_SCSS_VENDOR_PATH)/_normalize.scss
 SRC_JS_VENDOR_PATH = $(SRC_JS_PATH)/vendor
 SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 	backbone.js\
-	handlebars.runtime.amd.js\
 	jquery.js\
 	require.js\
+	swig.js\
 	underscore.js\
 	)
 
@@ -98,8 +98,8 @@ clean:
 		$(BUILD_CSS_PATH)\
 		$(BUILD_DJANGO_TEMPLATES)\
 		$(BUILD_FONTS_PATH)\
-		$(BUILD_HBS_PATH)\
 		$(BUILD_JS_PATH)\
+		$(BUILD_SWIG_PATH)\
 		$(SRC_SCSS_FONTS)\
 
 distclean: clean
@@ -122,7 +122,7 @@ migrate: venv
 runserver: venv migrate build
 	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000
 
-test: $(SRC_JS_VENDOR) $(BUILD_HBS) node_modules
+test: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 	./node_modules/karma/bin/karma start
 
 venv: $(VENV_ACTIVATE)
@@ -134,14 +134,20 @@ $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $
 	mkdir -p "$(@D)"
 	$(SASS) $(SASS_FLAGS) $< $@
 
-$(BUILD_DJANGO_TEMPLATES_PATH)/%.hbs: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
+$(BUILD_DJANGO_TEMPLATES_PATH)/%.swig: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
 
-$(BUILD_HBS_PATH)/%.js: $(SRC_HBS_PATH)/%.hbs node_modules
+$(BUILD_SWIG_PATH)/%.js: $(SRC_SWIG_PATH)/%.swig node_modules
 	mkdir -p "$(@D)"
-	./node_modules/.bin/handlebars $< --output $@ --amd
+	./node_modules/.bin/swig compile $<\
+		--wrap-start="\
+			define(['swig'], function (swig) {\
+				return (function (data) {\
+					return swig.run(" --wrap-end=", data);\
+				});\
+			});" > $@
 
-$(BUILD_JS_PATH)/%.js: $(BUILD_HBS) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
+$(BUILD_JS_PATH)/%.js: $(BUILD_SWIG) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/r.js -o build-config.js $(R.JS_FLAGS) name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
 	$(NO_COMMENT)
@@ -151,9 +157,9 @@ $(BUILD_JS_PATH)/vendor/require.js: node_modules
 	cp ./node_modules/requirejs/require.js $@
 
 $(SRC_JS_VENDOR_PATH)/backbone.js: node_modules/backbone/backbone.js
-$(SRC_JS_VENDOR_PATH)/handlebars.runtime.amd.js: node_modules/handlebars/dist/handlebars.runtime.amd.js
 $(SRC_JS_VENDOR_PATH)/jquery.js: node_modules/jquery/dist/jquery.js
 $(SRC_JS_VENDOR_PATH)/require.js: node_modules/requirejs/require.js
+$(SRC_JS_VENDOR_PATH)/swig.js: node_modules/swig/dist/swig.js
 $(SRC_JS_VENDOR_PATH)/underscore.js: node_modules/underscore/underscore.js
 $(SRC_SCSS_VENDOR_PATH)/_normalize.scss: node_modules/normalize.css/normalize.css
 $(SRC_JS_VENDOR) $(SRC_SCSS_VENDOR):
