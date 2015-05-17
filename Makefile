@@ -30,14 +30,13 @@ BUILD_STATIC_PATH = static
 
 SRC_DJANGO_TEMPLATES_PATH = templates/partials/static-pages
 SRC_DJANGO_TEMPLATES = $(shell find $(SRC_DJANGO_TEMPLATES_PATH) -type f -name '*.html')
-BUILD_DJANGO_TEMPLATES_PATH = $(SRC_STATIC_PATH)/swig
+SRC_SWIG_PATH = $(SRC_STATIC_PATH)/swig
 BUILD_DJANGO_TEMPLATES = $(subst \
 	$(SRC_DJANGO_TEMPLATES_PATH),\
-	$(BUILD_DJANGO_TEMPLATES_PATH),\
+	$(SRC_SWIG_PATH),\
 	$(SRC_DJANGO_TEMPLATES:.html=.swig)\
 	)
 
-SRC_SWIG_PATH = $(SRC_STATIC_PATH)/swig
 SRC_SWIG = $(shell find $(SRC_SWIG_PATH) -type f -name '*.swig') $(BUILD_DJANGO_TEMPLATES)
 BUILD_SWIG_PATH = $(SRC_STATIC_PATH)/js/templates
 BUILD_SWIG = $(subst $(SRC_SWIG_PATH),$(BUILD_SWIG_PATH),$(SRC_SWIG:.swig=.js))
@@ -134,7 +133,7 @@ $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $
 	mkdir -p "$(@D)"
 	$(SASS) $(SASS_FLAGS) $< $@
 
-$(BUILD_DJANGO_TEMPLATES_PATH)/%.swig: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
+$(SRC_SWIG_PATH)/%.swig: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
 
 $(BUILD_SWIG_PATH)/%.js: $(SRC_SWIG_PATH)/%.swig node_modules
