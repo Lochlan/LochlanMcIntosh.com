@@ -1,4 +1,4 @@
-<p>Please contact me for more information using the below form, or by e-mailing me directly at <a href="mailto:info@lochlanmcintosh.com">info@lochlanmcintosh.com</a>.</p>
+<p>Please contact me for more information using the below form, or by e-mailing me directly at <a href="mailto:info@lochlanmcintosh.com?subject={{ subject }}&body={{ text }}">info@lochlanmcintosh.com</a>.</p>
 
 <form>
     <p>
@@ -52,7 +52,7 @@
         <div>
             {% if error_status_code == 429 %}
                 <p>You have exceeded the number of daily form submissions allowed.</p>
-                <p>Please try again tomorrow or e-mail me directly at <a href="mailto:info@lochlanmcintosh.com">info@lochlanmcintosh.com</a></p>
+                <p>Please try again tomorrow or e-mail me directly at <a href="mailto:info@lochlanmcintosh.com?subject={{ subject }}&body={{ text }}">info@lochlanmcintosh.com</a></p>
             {% else %}
                 <p>There was a problem submitting your message.</p>
             {% endif %}
