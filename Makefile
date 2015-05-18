@@ -64,6 +64,7 @@ SRC_JS_VENDOR_PATH = $(SRC_JS_PATH)/vendor
 SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 	backbone.js\
 	jquery.js\
+	jquery.serialize-object.js\
 	require.js\
 	swig.js\
 	underscore.js\
@@ -157,6 +158,7 @@ $(BUILD_JS_PATH)/vendor/require.js: node_modules
 
 $(SRC_JS_VENDOR_PATH)/backbone.js: node_modules/backbone/backbone.js
 $(SRC_JS_VENDOR_PATH)/jquery.js: node_modules/jquery/dist/jquery.js
+$(SRC_JS_VENDOR_PATH)/jquery.serialize-object.js: node_modules/form-serializer/jquery.serialize-object.js
 $(SRC_JS_VENDOR_PATH)/require.js: node_modules/requirejs/require.js
 $(SRC_JS_VENDOR_PATH)/swig.js: node_modules/swig/dist/swig.js
 $(SRC_JS_VENDOR_PATH)/underscore.js: node_modules/underscore/underscore.js

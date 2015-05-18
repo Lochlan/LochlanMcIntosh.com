@@ -25,17 +25,11 @@ define([
         submit: function (event) {
             event.preventDefault();
 
-            var userInput = _.object(
-                _.map(this.$('form [name]'), function (field) {
-                    return [field.name, field.value];
-                })
-            );
-
             this.model.save(
                 _.extend({
                     disabled: true,
                     error_status_code: 0,
-                }, userInput)
+                }, this.$('form').serializeObject())
             ).then(
                 this.submitSuccess.bind(this),
                 this.submitError.bind(this)
