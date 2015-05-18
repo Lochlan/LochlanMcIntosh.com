@@ -15,6 +15,10 @@ define([
 
         initialize: function () {
             this.model = new Model();
+
+            this.submitSuccess = this.submitSuccess.bind(this);
+            this.submitError = this.submitError.bind(this);
+
             this.listenTo(this.model, 'change', this.render);
         },
 
@@ -33,8 +37,8 @@ define([
                     error_status_code: 0,
                 }, this.$('form').serializeObject())
             ).then(
-                this.submitSuccess.bind(this),
-                this.submitError.bind(this)
+                this.submitSuccess,
+                this.submitError
             );
         },
         submitSuccess: function () {
