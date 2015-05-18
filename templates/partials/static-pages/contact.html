@@ -7,6 +7,7 @@
             placeholder="Name"
             required
             type="text"
+            value="{{ name }}"
         >
     </p>
 
@@ -17,6 +18,7 @@
             placeholder="E-Mail Address"
             required
             type="email"
+            value="{{ email }}"
         >
     </p>
 
@@ -26,6 +28,7 @@
             placeholder="Subject"
             required
             type="text"
+            value="{{ subject }}"
         >
     </p>
 
@@ -34,13 +37,25 @@
             name="text"
             placeholder="Message"
             required
-        ></textarea>
+        >{{ text }}</textarea>
     </p>
 
     <p>
         <input
             type="submit"
             value="Send Message"
+            {% if disabled %}disabled{% endif %}
         >
     </p>
+
+    {% if error_status_code %}
+        <div>
+            {% if error_status_code == 429 %}
+                <p>You have exceeded the number of daily form submissions allowed.</p>
+                <p>Please try again tomorrow or e-mail me directly at <a href="mailto:info@lochlanmcintosh.com">info@lochlanmcintosh.com</a></p>
+            {% else %}
+                <p>There was a problem submitting your message.</p>
+            {% endif %}
+        </div>
+    {% endif %}
 </form>
