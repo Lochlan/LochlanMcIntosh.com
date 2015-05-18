@@ -4,7 +4,8 @@ define([
     'models/message',
     'templates/contact',
     'templates/contact-submitted',
-], function (_, Backbone, Model, contactTpl, contactSubmittedTpl) {
+    'templates/contact-error',
+], function (_, Backbone, Model, contactTpl, contactSubmittedTpl, contactErrorTpl) {
     'use strict';
 
     var ContactView = Backbone.View.extend({
@@ -40,6 +41,10 @@ define([
             this.render();
         },
         submitError: function (reason) {
+            if (reason.status === 429) {
+                this.template = contactErrorTpl;
+            }
+
             this.model.set(
                 _.extend({}, this.model.attributes, {
                     disabled: false,
