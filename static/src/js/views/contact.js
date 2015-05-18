@@ -10,10 +10,11 @@ define([
 
     var ContactView = Backbone.View.extend({
 
-        model: new Model(),
+        model: undefined,
         template: contactTpl,
 
         initialize: function () {
+            this.model = new Model();
             this.listenTo(this.model, 'change', this.render);
         },
 
