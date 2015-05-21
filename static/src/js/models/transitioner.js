@@ -4,9 +4,11 @@ define([
     'use strict';
 
     var Transitioner = Backbone.Model.extend({
-        defaults: {
-            active_view: new Backbone.View(),
-            incoming_view: undefined,
+        defaults: function () {
+            return {
+                active_view: new Backbone.View(),
+                incoming_view: undefined,
+            };
         },
     });
 

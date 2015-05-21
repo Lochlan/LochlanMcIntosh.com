@@ -6,17 +6,16 @@ define([
     describe('transitioner model', function () {
         var model;
 
-        beforeEach(function() {
-            model = new Transitioner({
-            });
+        beforeEach(function () {
+            model = new Transitioner();
         });
 
-        it('has default properties', function() {
+        it('has default properties', function () {
             expect(model.defaults).toBeDefined();
         });
 
-        it('has a default property active_view', function() {
-            expect(model.defaults.active_view).toBeDefined();
+        it('has attribute active_view', function () {
+            expect(model.has('active_view')).toBe(true);
         });
     });
 
