@@ -5,7 +5,8 @@
         class="transitioner_view-active"
         data-backbone-transitioner-active
     >
-        {% include "shared/"|add:included_template|add:".html" %}
+        {% block shared %}
+        {% endblock %}
     </div>
     <div
         class="transitioner_view-incoming hide"

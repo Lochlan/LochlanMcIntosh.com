@@ -1,3 +1,8 @@
+{% extends "shared.html" %}
+
+{% block page-title %}Contact{% endblock %}
+
+{% block shared %}
 <p>Please contact me for more information using the below form, or by e-mailing me directly at <a href="mailto:info@lochlanmcintosh.com?subject={{ subject }}&body={{ text }}">info@lochlanmcintosh.com</a>.</p>
 
 <form>
@@ -54,3 +59,4 @@
         </div>
     {% endif %}
 </form>
+{% endblock %}

@@ -1,3 +1,6 @@
+{% extends "shared.html" %}
+
+{% block shared %}
 <div class="text_center">
     {% if error_status_code == 429 %}
         <p>You have exceeded the number of daily form submissions allowed.</p>
@@ -5,3 +8,4 @@
         <p>Please try again tomorrow or e-mail me directly at <a href="mailto:info@lochlanmcintosh.com?subject={{ subject }}&body={{ text }}">info@lochlanmcintosh.com</a></p>
     {% endif %}
 </div>
+{% endblock %}

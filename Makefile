@@ -137,7 +137,7 @@ $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $
 $(SRC_SWIG_PATH)/%.swig: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
 
-$(BUILD_SWIG_PATH)/%.js: $(SRC_SWIG_PATH)/%.swig node_modules
+$(BUILD_SWIG_PATH)/%.js: $(SRC_SWIG_PATH)/%.swig $(SRC_SWIG_PATH)/shared.html node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/swig compile $<\
 		--wrap-start="\
