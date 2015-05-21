@@ -28,7 +28,7 @@ endef
 SRC_STATIC_PATH = static/src
 BUILD_STATIC_PATH = static
 
-SRC_DJANGO_TEMPLATES_PATH = templates/partials/static-pages
+SRC_DJANGO_TEMPLATES_PATH = templates/shared
 SRC_DJANGO_TEMPLATES = $(shell find $(SRC_DJANGO_TEMPLATES_PATH) -type f -name '*.html')
 SRC_SWIG_PATH = $(SRC_STATIC_PATH)/swig
 BUILD_DJANGO_TEMPLATES = $(subst \
