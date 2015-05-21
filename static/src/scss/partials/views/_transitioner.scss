@@ -26,7 +26,7 @@
     -webkit-transform-origin: 0% 50%;
     transform-origin: 0% 50%;
 
-    &.transitioner_view_animate {
+    &[data-transitioning] {
         opacity: 0;
         -webkit-transform-style: preserve-3d;
         transform-style: preserve-3d;
@@ -47,7 +47,7 @@
         width: calc(100% - 40px);
     }
 
-    &.transitioner_view_animate {
+    &[data-transitioning] {
         left: 0;
         opacity: 1;
         top: 0;

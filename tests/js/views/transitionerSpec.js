@@ -128,11 +128,11 @@ define([
             });
 
             describe('active view', function () {
-                it('should have class "transitioner_view_animate"', function () {
+                it('should have data attribute "transitioning"', function () {
                     expect(
                         view.el.querySelector('[data-backbone-transitioner-active]')
-                            .classList.contains('transitioner_view_animate')
-                    ).toEqual(true);
+                            .dataset.transitioning
+                    ).toBeDefined();
                 });
             });
 
@@ -149,11 +149,11 @@ define([
                     ).toEqual(templateContent);
                 });
 
-                it('should have class "transitioner_view_animate"', function () {
+                it('should have data attribute "transitioning"', function () {
                     expect(
                         view.el.querySelector('[data-backbone-transitioner-incoming]')
-                            .classList.contains('transitioner_view_animate')
-                    ).toEqual(true);
+                            .dataset.transitioning
+                    ).toBeDefined();
                 });
             });
         });
