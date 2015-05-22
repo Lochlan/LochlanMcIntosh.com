@@ -1,5 +1,6 @@
 *.pyc
 .sass-cache/
+coverage/
 db.sqlite3
 env/
 makedeps/
