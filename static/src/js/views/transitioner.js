@@ -1,10 +1,11 @@
 define([
     'underscore',
     'backbone',
+    'models/app_state',
     'models/transitioner',
     'templates/transitioner',
     'views/static',
-], function (_, Backbone, Model, template, StaticView) {
+], function (_, Backbone, appState, Model, template, StaticView) {
     'use strict';
 
     // TODO consider using Modernizr instead of this function
@@ -73,6 +74,9 @@ define([
 
             this.model.get('incoming_view')
                 .$el.removeClass('hide');
+
+            appState.set('page_title',
+                this.model.get('incoming_view').$('[data-page-title]').data('page-title'));
 
             // hack to trigger CSS transitions on newly-inserted DOM elements
             // without it elements will often render in a post-transition state

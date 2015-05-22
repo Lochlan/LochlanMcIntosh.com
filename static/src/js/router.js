@@ -2,9 +2,10 @@ define([
     'jquery',
     'backbone',
     'views/contact',
+    'views/page_title',
     'views/static',
     'views/transitioner',
-], function ($, Backbone, ContactView, StaticView, TransitionerView) {
+], function ($, Backbone, ContactView, PageTitleView, StaticView, TransitionerView) {
     'use strict';
 
     var Router = Backbone.Router.extend({
@@ -21,6 +22,7 @@ define([
         // views that should persist across page transitions
         views: {
             contact: undefined,
+            page_title: new PageTitleView(),
             transitioner: undefined,
         },
 
