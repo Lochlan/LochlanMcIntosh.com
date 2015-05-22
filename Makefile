@@ -122,8 +122,11 @@ migrate: venv
 runserver: venv migrate build
 	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000
 
-test: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
+test: test-python test-js
+test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 	./node_modules/karma/bin/karma start
+test-python:
+	python manage.py test
 
 venv: $(VENV_ACTIVATE)
 
