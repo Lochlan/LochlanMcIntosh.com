@@ -154,7 +154,7 @@ $(BUILD_JS_PATH)/%.js: $(BUILD_SWIG) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 
 $(BUILD_JS_PATH)/vendor/require.js: node_modules
 	mkdir -p "$(@D)"
-	cp ./node_modules/requirejs/require.js $@
+	./node_modules/.bin/uglifyjs node_modules/requirejs/require.js --output $@
 
 $(SRC_JS_VENDOR_PATH)/backbone.js: node_modules/backbone/backbone.js
 $(SRC_JS_VENDOR_PATH)/jquery.js: node_modules/jquery/dist/jquery.js
