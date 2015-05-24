@@ -1,4 +1,5 @@
 *.pyc
+.coverage
 .sass-cache/
 coverage/
 db.sqlite3

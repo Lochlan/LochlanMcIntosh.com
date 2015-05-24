@@ -13,6 +13,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose',
     'djrill',
     'rest_framework',
     'lochlanmcintoshcom.api',
@@ -44,6 +45,15 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+
+# Tests
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=lochlanmcintoshcom',
+]
 
 # Email
 
