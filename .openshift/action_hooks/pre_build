@@ -1,17 +1,14 @@
 #!/bin/bash
-# This is a simple script and will be executed on your CI system if 
-# available.  Otherwise it will execute while your application is stopped
-# before the build step.  This script gets executed directly, so it
-# could be python, php, ruby, etc.
+
+# This script is executed while the application is stopped
 
 echo "--> ACTION HOOK: pre_build <--"
 
-#  Source utility functions.
 source "$OPENSHIFT_REPO_DIR/.openshift/lib/utils"
 
-#  Ensure custom node version if not installed.
+echo "Executing Node.js install scripts"
 ensure_node_is_installed
 
-# export commit hash for versioning static files
+echo "Export commit hash to DEPLOYED_GIT_COMMIT_HASH for versioning static files"
 cat ${OPENSHIFT_HOMEDIR}git/django.git/refs/heads/${OPENSHIFT_DEPLOYMENT_BRANCH} \
     > ${OPENSHIFT_HOMEDIR}.env/user_vars/DEPLOYED_GIT_COMMIT_HASH
