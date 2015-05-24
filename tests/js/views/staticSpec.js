@@ -10,7 +10,7 @@ define([
         describe('when constructing', function () {
             describe('without a passed-in or specified template', function () {
 
-                beforeEach(function() {
+                beforeEach(function () {
                     view = new StaticView();
                 });
 
@@ -34,17 +34,17 @@ define([
                     expect(view.setTemplate).toBeDefined();
                 });
 
-                it('should not have a template set', function() {
+                it('should not have a template set', function () {
                     expect(view.template).not.toBeDefined();
                 });
 
-                it('should throw an exception if render is called without an argument', function() {
+                it('should throw an exception if render is called without an argument', function () {
                     expect(view.render.bind(view)).toThrow();
                 });
             });
 
             describe('with a specified template', function () {
-                beforeEach(function() {
+                beforeEach(function () {
                     view = new StaticView({
                         template: 'home',
                     });
@@ -54,11 +54,11 @@ define([
                     expect(view).toBeDefined();
                 });
 
-                it('should have a template set', function() {
+                it('should have a template set', function () {
                     expect(view.template).toBeDefined();
                 });
 
-                it('should not throw an exception if render is called without an argument', function() {
+                it('should not throw an exception if render is called without an argument', function () {
                     expect(view.render.bind(view)).not.toThrow();
                 });
             });
@@ -66,7 +66,7 @@ define([
             describe('with a passed-in template', function () {
                 var template = _.template('<h1>Hello, world!</h1>');
 
-                beforeEach(function() {
+                beforeEach(function () {
                     view = new StaticView({
                         template: template,
                     });
@@ -76,11 +76,11 @@ define([
                     expect(view).toBeDefined();
                 });
 
-                it('should have a template set', function() {
+                it('should have a template set', function () {
                     expect(view.template).toBeDefined();
                 });
 
-                it('should not throw an exception if render is called without an argument', function() {
+                it('should not throw an exception if render is called without an argument', function () {
                     expect(view.render.bind(view)).not.toThrow();
                 });
             });
@@ -94,7 +94,7 @@ define([
                 view.render(template);
             });
 
-            it('should have a template set to the passed-in value', function() {
+            it('should have a template set to the passed-in value', function () {
                 expect(view.template).toEqual(template);
             });
 
@@ -110,7 +110,7 @@ define([
                 view.renderTemplate('about');
             });
 
-            it('should have a template set', function() {
+            it('should have a template set', function () {
                 expect(view.template).toBeDefined();
             });
 

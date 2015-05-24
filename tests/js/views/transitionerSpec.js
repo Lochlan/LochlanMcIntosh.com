@@ -10,7 +10,7 @@ define([
     describe('transitioner view', function () {
         var view;
 
-        beforeEach(function() {
+        beforeEach(function () {
             $('<section id="transitionerView">' + transitionerTemplate() + '</section>')
                 .appendTo('body');
 
@@ -28,11 +28,11 @@ define([
                 expect(view).toBeDefined();
             });
 
-            it('should have a model', function() {
+            it('should have a model', function () {
                 expect(view.model).toBeDefined();
             });
 
-            it('should have a template', function() {
+            it('should have a template', function () {
                 expect(view.template).toBeDefined();
             });
 
@@ -43,7 +43,7 @@ define([
             describe('with a specified active view', function () {
                 var activeView;
 
-                beforeEach(function() {
+                beforeEach(function () {
                     activeView = new StaticView({
                         template: _.template('<h1>Hello, world!</h1>'),
                     });

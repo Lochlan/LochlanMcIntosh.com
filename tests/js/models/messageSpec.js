@@ -6,7 +6,7 @@ define([
     describe('message model', function () {
         var message;
 
-        beforeEach(function() {
+        beforeEach(function () {
             message = new Message({
                 email: 'test.user@dev.lochlanmcintosh.com',
                 name: 'Test User',
@@ -15,7 +15,7 @@ define([
             });
         });
 
-        it('has default properties name, email, subject, and text', function() {
+        it('has default properties name, email, subject, and text', function () {
             expect(message.defaults).toBeDefined();
             expect(message.defaults.name).toBeDefined();
             expect(message.defaults.email).toBeDefined();

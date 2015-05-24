@@ -9,14 +9,14 @@ define([
     describe('router', function () {
         var router;
 
-        beforeEach(function() {
+        beforeEach(function () {
             spyOn(Backbone.history, 'start');
             spyOn(Router.prototype, 'transition').and.callThrough();
 
             router = new Router();
         });
 
-        afterEach(function() {
+        afterEach(function () {
             // remove click handler for in-site links
             $(document).off('click');
         });
@@ -26,11 +26,11 @@ define([
                 expect(router).toBeDefined();
             });
 
-            it('should have routes', function() {
+            it('should have routes', function () {
                 expect(router.routes).toBeDefined();
             });
 
-            it('should have corresponding callback methods for every route', function() {
+            it('should have corresponding callback methods for every route', function () {
                 var routeCallbacks = _.uniq(_.values(router.routes));
 
                 routeCallbacks.forEach(function (callbackName) {
@@ -38,7 +38,7 @@ define([
                 });
             });
 
-            it('should have views', function() {
+            it('should have views', function () {
                 expect(router.views).toBeDefined();
             });
 
@@ -58,7 +58,7 @@ define([
                 expect(Backbone.history.start).toHaveBeenCalled();
             });
 
-            it('should have a jQuery click handler on document for all in-site links', function() {
+            it('should have a jQuery click handler on document for all in-site links', function () {
                 // $._data is an undocumented method
                 var clickEventData = _.find($._data(document, 'events').click, function (clickEventData) {
                     // TODO use a better conditional
