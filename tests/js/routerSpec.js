@@ -112,12 +112,26 @@ define([
         });
 
         describe('when calling the route method contact', function () {
+            var oldContactView;
+
             beforeEach(function () {
+                oldContactView = router.views.contact;
                 router.contact();
             });
 
             it('should call router.transitioner', function () {
                 expect(router.transition).toHaveBeenCalled();
+            });
+
+            it('should instantiate the contact view', function () {
+                expect(oldContactView).toEqual(undefined);
+                expect(typeof router.views.contact).toEqual('object');
+            });
+
+            it('should not change the contact view when called again', function () {
+                oldContactView = router.views.contact;
+                router.contact();
+                expect(oldContactView).toEqual(router.views.contact);
             });
         });
 
