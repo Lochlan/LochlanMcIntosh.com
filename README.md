@@ -1,5 +1,7 @@
 # [LochlanMcIntosh.com](http://www.lochlanmcintosh.com/)
 
+[![Build Status](https://travis-ci.org/Lochlan/LochlanMcIntosh.com.png?branch=master)](https://travis-ci.org/Lochlan/LochlanMcIntosh.com)
+
 My personal website, written in Python and JavaScript and deployed on [OpenShift](https://www.openshift.com/).
 
 This repo also serves as a living example of what I think a reasonable modern web project might look like, represented by the stack I am partial towards and most experienced with.
