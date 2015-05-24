@@ -8,14 +8,11 @@ define([
         var view;
 
         describe('when constructing', function () {
-            // TODO Reduce code duplication in these tests
             describe('without a passed-in or specified template', function () {
 
                 beforeEach(function() {
                     view = new StaticView();
                 });
-
-                // shared
 
                 it ('should exist', function () {
                     expect(view).toBeDefined();
@@ -36,8 +33,6 @@ define([
                  it('should have a setTemplate method', function () {
                     expect(view.setTemplate).toBeDefined();
                 });
-
-                // unshared
 
                 it('should not have a template set', function() {
                     expect(view.template).not.toBeDefined();
@@ -55,29 +50,9 @@ define([
                     });
                 });
 
-                // shared
-
                 it ('should exist', function () {
                     expect(view).toBeDefined();
                 });
-
-                it('should have an initialize method', function () {
-                    expect(view.initialize).toBeDefined();
-                });
-
-                it('should have a render method', function () {
-                    expect(view.render).toBeDefined();
-                });
-
-                it('should have a renderTemplate method', function () {
-                    expect(view.renderTemplate).toBeDefined();
-                });
-
-                 it('should have a setTemplate method', function () {
-                    expect(view.setTemplate).toBeDefined();
-                });
-
-                // unshared
 
                 it('should have a template set', function() {
                     expect(view.template).toBeDefined();
@@ -97,29 +72,9 @@ define([
                     });
                 });
 
-                // shared
-
                 it ('should exist', function () {
                     expect(view).toBeDefined();
                 });
-
-                it('should have an initialize method', function () {
-                    expect(view.initialize).toBeDefined();
-                });
-
-                it('should have a render method', function () {
-                    expect(view.render).toBeDefined();
-                });
-
-                it('should have a renderTemplate method', function () {
-                    expect(view.renderTemplate).toBeDefined();
-                });
-
-                 it('should have a setTemplate method', function () {
-                    expect(view.setTemplate).toBeDefined();
-                });
-
-                // unshared
 
                 it('should have a template set', function() {
                     expect(view.template).toBeDefined();
