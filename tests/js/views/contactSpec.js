@@ -144,6 +144,26 @@ define([
                     });
                 });
 
+                describe('when the server responds with a 429', function () {
+                    var oldTemplate;
+
+                    beforeEach(function () {
+                        oldTemplate = view.template;
+
+                        jasmine.Ajax.requests.mostRecent().respondWith({
+                            'status': 429,
+                            'contentType': 'application/json',
+                        });
+                    });
+
+                    it('should call submitError', function () {
+                        expect(view.submitError).toHaveBeenCalled();
+                    });
+
+                    it('should change the template', function () {
+                        expect(view.template).not.toEqual(oldTemplate);
+                    });
+                });
             });
         });
     });
