@@ -32,6 +32,9 @@ env PRODUCTION=1 make
 # Run the development webserver
 make runserver
 
+# Run the development webserver with the production build
+env PRODUCTION=1 make runserver
+
 # Delete compiled files
 make clean
 
