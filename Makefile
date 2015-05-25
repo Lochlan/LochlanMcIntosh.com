@@ -131,7 +131,7 @@ test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 	./node_modules/karma/bin/karma start
 test-python: venv
 	$(VENV_MANAGEPY) test
-	coverage html --directory=coverage/python
+	. $(VENV_ACTIVATE); coverage html --directory=coverage/python
 
 venv: $(VENV_ACTIVATE)
 
