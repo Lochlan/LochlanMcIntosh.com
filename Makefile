@@ -105,10 +105,13 @@ clean:
 
 distclean: clean
 	rm -rfv\
-		.bundle\
+		$(shell find . -type f -name '*.pyc')\
 		$(SRC_JS_VENDOR_PATH)\
 		$(SRC_SCSS_VENDOR_PATH)\
 		$(VENV_DIRECTORY)\
+		.bundle\
+		.sass-cache\
+		coverage\
 		db.sqlite3\
 		makedeps\
 		node_modules\
