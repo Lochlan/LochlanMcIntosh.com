@@ -76,13 +76,12 @@ VENV_MANAGEPY = . $(VENV_ACTIVATE); python manage.py
 
 
 ifdef PRODUCTION
-	ALL_PREREQUISITES = build
 	BUNDLER_FLAGS = --without development
 	NO_COMMENT = ./node_modules/.bin/no-comment $@ $@
 	NPM_FLAGS = --production
 	SASS_FLAGS = --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none
 else
-	ALL_PREREQUISITES = venv lint test build
+	ALL_PREREQUISITES = venv lint test
 	R.JS_FLAGS = optimize=none
 	SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 endif
@@ -90,7 +89,7 @@ endif
 
 # targets
 
-all: $(ALL_PREREQUISITES)
+all: $(ALL_PREREQUISITES) build
 
 build: $(BUILD_CSS) $(BUILD_JS)
 
