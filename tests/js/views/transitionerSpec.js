@@ -20,7 +20,7 @@ define([
         });
 
         afterEach(function () {
-            $('#transitionerView').remove();
+            view.remove();
         });
 
         describe('when constructing', function () {
@@ -48,10 +48,18 @@ define([
                         template: _.template('<h1>Hello, world!</h1>'),
                     });
 
+                    // hack: remove the view created in the outer beforeEach
+                    view.setElement($('<div></div>'));
+                    view.remove();
+
                     view = new TransitionerView({
                         active_view: activeView,
                         el: '#transitionerView',
                     });
+                });
+
+                afterEach(function () {
+                    activeView.remove();
                 });
 
                 it('should set that active view in the model', function () {
@@ -172,7 +180,7 @@ define([
                 setTimeout(function () {
                     // Fake transitionend event
                     // Since no CSS is loaded the transition classes don't do anything
-                    $('[data-backbone-transitioner-active]').trigger('webkitTransitionEnd');
+                    $('[data-backbone-transitioner-active]').trigger(view.getTransitionEndEventName());
                     done();
                 }, 30);
             });
