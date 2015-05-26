@@ -9,5 +9,10 @@ install:
 script:
   - "make test"
 
+env:
+  global:
+    - secure: P9oBHBePwRduFw/lJpUAQwDQL8hpfbpqdHi5QeVzqNCzs7VYJ+EdbXBGFJ9ZvRiryKXAnIA3la/LitY/rjUIxgEPMF3vTYEjRPv6JLDsDQf4daxU3d/NAxJL1mjPFY/DdBC1yeGjyi7JcfGsrunjQtRWhPfXCm3q/saCVJphcr0=
+    - secure: b0eCVMA6OT0m4T/MthVihXARXy6dYLAOB7/WMR8zmTRQzjvFa5s81qSjFYCDdzCm6acVMdoT71IqkrRMQiCraLcicuLBC5P5sWyeKbHZTS7o6aD1OGkiYQ3sZ4xU2NL8FTH6UOyeIHororvR5KZJZFooKVFIocQKrxA9qWjxaX0=
+
 notifications:
   email: false
