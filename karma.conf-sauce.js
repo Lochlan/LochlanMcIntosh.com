@@ -40,7 +40,18 @@ module.exports = function(config) {
         captureTimeout: 120000,
         customLaunchers: customLaunchers,
         reporters: config.reporters.concat(['saucelabs']),
-        sauceLabs: { testName: 'Karma Sauce Labs' },
+        sauceLabs: {
+            testName: (function () {
+                if (process.env.TRAVIS) {
+                    return [
+                        process.env.TRAVIS_REPO_SLUG,
+                        process.env.TRAVIS_BRANCH,
+                        process.env.TRAVIS_BUILD_NUMBER,
+                    ].join(' ');
+                }
+                return 'Karma Sauce Labs';
+            }()),
+        },
         singleRun: true,
     });
 };
