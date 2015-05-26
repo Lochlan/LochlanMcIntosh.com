@@ -8,25 +8,6 @@ define([
 ], function (_, Backbone, appState, Model, template, StaticView) {
     'use strict';
 
-    // TODO consider using Modernizr instead of this function
-    // taken from http://stackoverflow.com/a/9090128/1491909
-    function transitionEndEventName() {
-        var i;
-        var el = document.createElement('div');
-        var transitions = {
-            'transition':'transitionend',
-            'OTransition':'otransitionend',
-            'MozTransition':'transitionend',
-            'WebkitTransition':'webkitTransitionEnd'
-        };
-
-        for (i in transitions) {
-            if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
-                return transitions[i];
-            }
-        }
-    }
-
     var TransitionerView = Backbone.View.extend({
 
         model: undefined,
@@ -65,6 +46,25 @@ define([
             return this;
         },
 
+        // TODO consider using Modernizr instead of this function
+        // taken from http://stackoverflow.com/a/9090128/1491909
+        getTransitionEndEventName: function () {
+            var i;
+            var el = document.createElement('div');
+            var transitions = {
+                'transition': 'transitionend',
+                'OTransition': 'otransitionend',
+                'MozTransition': 'transitionend',
+                'WebkitTransition': 'webkitTransitionEnd'
+            };
+
+            for (i in transitions) {
+                if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
+                    return transitions[i];
+                }
+            }
+        },
+
         transition: function (requestedView) {
             this.model.set({
                 incoming_view: requestedView,
@@ -84,7 +84,7 @@ define([
         },
         startTransitionAnimation: function () {
             this.model.get('active_view')
-                .$el.one(transitionEndEventName(), this.onTransitioned.bind(this));
+                .$el.one(this.getTransitionEndEventName(), this.onTransitioned.bind(this));
 
             this.model.get('active_view')
                 .el.dataset.transitioning = true;
