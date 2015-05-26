@@ -6,6 +6,7 @@ db.sqlite3
 env/
 makedeps/
 node_modules/
+static/components/
 static/css/
 static/fonts/
 static/js/

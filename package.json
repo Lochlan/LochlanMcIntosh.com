@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "backbone": "1.2.0",
+    "bower": "1.4.1",
     "form-serializer": "git://github.com/macek/jquery-serialize-object.git#2.4.5",
     "jquery": "2.1.4",
     "no-comment": "0.0.2",

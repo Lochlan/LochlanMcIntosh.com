@@ -70,6 +70,8 @@ SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 	underscore.js\
 	)
 
+BUILD_COMPONENTS = static/components
+
 VENV_DIRECTORY = env
 VENV_ACTIVATE = $(VENV_DIRECTORY)/bin/activate
 VENV_MANAGEPY = . $(VENV_ACTIVATE); python manage.py
@@ -92,10 +94,11 @@ endif
 
 all: $(ALL_PREREQUISITES)
 
-build: $(BUILD_CSS) $(BUILD_JS)
+build: $(BUILD_COMPONENTS) $(BUILD_CSS) $(BUILD_JS)
 
 clean:
 	rm -rfv\
+		$(BUILD_COMPONENTS)\
 		$(BUILD_CSS_PATH)\
 		$(BUILD_DJANGO_TEMPLATES)\
 		$(BUILD_FONTS_PATH)\
@@ -136,6 +139,11 @@ test-python: venv
 venv: $(VENV_ACTIVATE)
 
 # file rules
+
+$(BUILD_COMPONENTS): bower.json node_modules
+	mkdir -p "$(@D)"
+	./node_modules/.bin/bower install
+	touch $@
 
 SASS = $(shell bundle show sass)/bin/sass
 $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $(SRC_SCSS_VENDOR) makedeps/gemfile.d

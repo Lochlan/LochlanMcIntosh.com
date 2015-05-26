@@ -1,0 +1,21 @@
+{
+  "name": "lochlanmcintosh.com",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Lochlan/LochlanMcIntosh.com",
+  "authors": [
+    "Lochlan McIntosh <lochlan.mcintosh@gmail.com>"
+  ],
+  "description": "LochlanMcIntosh.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "0.9.1",
+    "webcomponentsjs": "0.7.1"
+  },
+  "private": true
+}
