@@ -16,12 +16,13 @@ define([
                 expect(view).toBeDefined();
             });
 
-            it('should have a model', function () {
-                expect(view.model).toBeDefined();
-            });
-
-            it('should have a template', function () {
-                expect(view.template).toBeDefined();
+            [
+                'model',
+                'template',
+            ].forEach(function (propertyName) {
+                it('should have a property called ' + propertyName, function () {
+                    expect(view[propertyName]).toBeDefined();
+                });
             });
 
             it('should have an events hash', function () {
@@ -34,16 +35,14 @@ define([
                 });
             });
 
-            it('should have a submit method', function () {
-                expect(view.submit).toBeDefined();
-            });
-
-            it('should have a submitSuccess method', function () {
-                expect(view.submitSuccess).toBeDefined();
-            });
-
-            it('should have a submitError method', function () {
-                expect(view.submitError).toBeDefined();
+            [
+                'submit',
+                'submitSuccess',
+                'submitError',
+            ].forEach(function (methodName) {
+                it('should have a method called ' + methodName, function () {
+                    expect(typeof view[methodName]).toEqual('function');
+                });
             });
         });
 
