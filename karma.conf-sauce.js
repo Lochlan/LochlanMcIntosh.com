@@ -31,6 +31,23 @@ module.exports = function(config) {
             browserName: 'internet explorer',
             version: '10',
         },
+
+        SL_Safari: {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            version: '8',
+        },
+
+        'SL_Android_Emulator_5.1': {
+            base: 'SauceLabs',
+            browserName: 'android',
+            version: '5.1'
+        },
+        'SL_Android_Emulator_4.0': {
+            base: 'SauceLabs',
+            browserName: 'android',
+            version: '4.0'
+        },
     };
 
     karmaConfig(config);
