@@ -24,6 +24,11 @@ if (!Function.prototype.bind) {
     };
 }
 
+// Hack for IE < 11
+if (!window.location.origin) {
+    window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
+}
+
 var allTestFiles = [];
 var TEST_REGEXP = /(spec|test)\.js$/i;
 
