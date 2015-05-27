@@ -46,7 +46,7 @@ make distclean
 
 See [the Makefile](https://github.com/Lochlan/LochlanMcIntosh.com/blob/master/Makefile) for additional, more granular targets.  Using it requires:
 
-- [GNU Make](http://www.gnu.org/software/make/), preferably 3.81 or better
+- [GNU Make](http://www.gnu.org/software/make/make.html), preferably 3.81 or better
 - [Python 3](https://www.python.org/), [pip](https://pip.pypa.io/), and [virtualenv](https://virtualenv.pypa.io/)
 - [Node.js](http://nodejs.org/) stable and [npm](https://www.npmjs.com/)
 - [Ruby](https://www.ruby-lang.org/) and [Bundler](http://bundler.io/)
