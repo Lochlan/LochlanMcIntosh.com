@@ -139,7 +139,7 @@ define([
                 it('should have data attribute "transitioning"', function () {
                     expect(
                         view.el.querySelector('[data-backbone-transitioner-active]')
-                            .dataset.transitioning
+                            .getAttribute('data-transitioning')
                     ).toBeDefined();
                 });
             });
@@ -160,7 +160,7 @@ define([
                 it('should have data attribute "transitioning"', function () {
                     expect(
                         view.el.querySelector('[data-backbone-transitioner-incoming]')
-                            .dataset.transitioning
+                            .getAttribute('data-transitioning')
                     ).toBeDefined();
                 });
             });

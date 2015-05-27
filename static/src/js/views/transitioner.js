@@ -86,11 +86,8 @@ define([
             this.model.get('active_view')
                 .$el.one(this.getTransitionEndEventName(), this.onTransitioned.bind(this));
 
-            this.model.get('active_view')
-                .el.dataset.transitioning = true;
-
-            this.model.get('incoming_view')
-                .el.dataset.transitioning = true;
+            this.model.get('active_view').el.setAttribute('data-transitioning', true);
+            this.model.get('incoming_view').el.setAttribute('data-transitioning', true);
         },
         onTransitioned: function () {
             this.model.get('active_view')
