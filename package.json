@@ -2,7 +2,7 @@
   "name": "lochlanmcintosh.com",
   "version": "0.0.0",
   "description": "LochlanMcIntosh.com",
-  "author": "Lochlan McIntosh <admin@lochlanmcintosh.com>",
+  "author": "Lochlan McIntosh <info@lochlanmcintosh.com>",
   "scripts": {
     "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   },
