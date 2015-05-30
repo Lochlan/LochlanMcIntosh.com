@@ -54,6 +54,7 @@ define([
                 _.extend({}, this.model.attributes, {
                     disabled: false,
                     error_status_code: reason.status,
+                    errorJSON: reason.responseJSON || {},
                 })
             );
         },

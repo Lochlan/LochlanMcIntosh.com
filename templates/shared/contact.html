@@ -19,6 +19,14 @@
         >
     </p>
 
+    {% if errorJSON.name %}
+        <div class="form_error">
+            {% for error_text in errorJSON.name %}
+                <p>{{ error_text }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <p>
         <input
             name="email"
@@ -30,6 +38,14 @@
         >
     </p>
 
+    {% if errorJSON.email %}
+        <div class="form_error">
+            {% for error_text in errorJSON.email %}
+                <p>{{ error_text }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <p>
         <input
             name="subject"
@@ -40,6 +56,14 @@
         >
     </p>
 
+    {% if errorJSON.subject %}
+        <div class="form_error">
+            {% for error_text in errorJSON.subject %}
+                <p>{{ error_text }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <p>
         <textarea
             name="text"
@@ -47,6 +71,14 @@
             required
         >{{ text }}</textarea>
     </p>
+
+    {% if errorJSON.text %}
+        <div class="form_error">
+            {% for error_text in errorJSON.text %}
+                <p>{{ error_text }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <p>
         <input
@@ -57,8 +89,14 @@
     </p>
 
     {% if error_status_code %}
-        <div>
+        <div class="form_error">
             <p>Error! There was a problem submitting your message.</p>
+        </div>
+    {% endif %}
+
+    {% if errorJSON.detail %}
+        <div class="form_error">
+            <p>{{ errorJSON.detail }}</p>
         </div>
     {% endif %}
 </form>
