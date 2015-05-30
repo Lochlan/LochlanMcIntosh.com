@@ -130,6 +130,8 @@ define([
 
             it('should not change the contact view when called again', function () {
                 oldContactView = router.views.contact;
+                // ignore actual transition
+                spyOn(router.views.transitioner, 'transition');
                 router.contact();
                 expect(oldContactView).toEqual(router.views.contact);
             });
