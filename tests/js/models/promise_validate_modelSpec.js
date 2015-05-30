@@ -27,15 +27,27 @@ define([
 
         describe('when saving', function () {
             var modelSaveReturnValue;
+            var modelSaveOnRejectedReason;
 
             describe('and failing validation', function () {
                 beforeEach(function () {
                     model = new TestModelFailingValidation();
-                    modelSaveReturnValue = model.save();
+                    modelSaveReturnValue = model.save().then(
+                        function () {},
+                        function (reason) {
+                            modelSaveOnRejectedReason = reason;
+                        }
+                    );
                 });
 
                 it('returns a thennable object', function () {
                     expect(modelSaveReturnValue.then).toBeDefined();
+                });
+
+                it('passes the validate method returned value as the onRejected callback reason', function () {
+                    expect(modelSaveOnRejectedReason).toEqual(
+                        'returning anything is considered a failure'
+                    );
                 });
             });
 

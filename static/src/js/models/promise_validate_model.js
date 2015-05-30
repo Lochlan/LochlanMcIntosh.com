@@ -10,7 +10,7 @@ define([
 
             // validation has failed
             if (modelSaveReturnValue === false) {
-                return $.Deferred().reject().promise();
+                return $.Deferred().reject(this.validationError).promise();
             }
 
             return modelSaveReturnValue;
