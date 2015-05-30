@@ -23,7 +23,7 @@
     "jquery": "2.1.4",
     "no-comment": "0.0.2",
     "normalize.css": "3.0.3",
-    "requirejs": "2.1.17",
+    "requirejs": "2.1.18",
     "swig": "1.4.2",
     "uglify-js": "2.4.23",
     "underscore": "1.8.3",
@@ -32,13 +32,14 @@
   "devDependencies": {
     "jasmine-core": "2.3.4",
     "jshint": "2.7.0",
-    "karma": "0.12.32",
+    "karma": "0.12.35",
     "karma-coverage": "0.3.1",
     "karma-jasmine": "0.3.5",
     "karma-jasmine-ajax": "0.1.12",
-    "karma-phantomjs-launcher": "0.1.4",
+    "karma-phantomjs-launcher": "0.2.0",
     "karma-requirejs": "0.2.2",
-    "karma-sauce-launcher": "0.2.11"
+    "karma-sauce-launcher": "0.2.11",
+    "phantomjs": "1.9.17"
   },
   "private": true
 }
