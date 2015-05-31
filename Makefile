@@ -86,10 +86,6 @@ else
 	SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 endif
 
-ifdef CI
-	KARMA_CONFIG = karma.conf-sauce.js
-endif
-
 # targets
 
 all: $(ALL_PREREQUISITES) build
@@ -130,7 +126,16 @@ runserver: venv migrate build
 
 test: test-python test-js
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
-	./node_modules/karma/bin/karma start $(KARMA_CONFIG)
+ifdef CI
+    ifdef TRAVIS
+		./node_modules/karma/bin/karma start karma.conf-sauce.js
+    else
+		./node_modules/.bin/sc-run ./node_modules/karma/bin/karma start karma.conf-sauce.js
+    endif
+else
+	./node_modules/karma/bin/karma start
+endif
+
 test-python: venv
 	$(VENV_MANAGEPY) test
 	. $(VENV_ACTIVATE); coverage html --directory=coverage/python

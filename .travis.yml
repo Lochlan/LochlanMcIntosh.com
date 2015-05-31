@@ -9,6 +9,8 @@ install:
 script:
   - "make test"
 
+addons:
+  sauce_connect: true
 env:
   global:
     - secure: P9oBHBePwRduFw/lJpUAQwDQL8hpfbpqdHi5QeVzqNCzs7VYJ+EdbXBGFJ9ZvRiryKXAnIA3la/LitY/rjUIxgEPMF3vTYEjRPv6JLDsDQf4daxU3d/NAxJL1mjPFY/DdBC1yeGjyi7JcfGsrunjQtRWhPfXCm3q/saCVJphcr0=
