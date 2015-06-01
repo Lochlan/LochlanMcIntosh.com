@@ -4,7 +4,6 @@ python:
   - "3.4"
 install:
   - "pip install --requirement requirements.txt --upgrade"
-  - "nvm install 0.10"
   - "npm install"
 script:
   - "make test"
