@@ -86,6 +86,12 @@ else
 	SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 endif
 
+ifdef CI
+    ifdef SAUCE_USERNAME
+		KARMA_CONFIG = karma.conf-sauce.js
+    endif
+endif
+
 # targets
 
 all: $(ALL_PREREQUISITES) build
@@ -128,9 +134,9 @@ test: test-python test-js
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 ifdef CI
     ifdef TRAVIS
-		./node_modules/karma/bin/karma start karma.conf-sauce.js
+		./node_modules/karma/bin/karma start $(KARMA_CONFIG)
     else
-		./node_modules/.bin/sc-run ./node_modules/karma/bin/karma start karma.conf-sauce.js
+		./node_modules/.bin/sc-run ./node_modules/karma/bin/karma start $(KARMA_CONFIG)
     endif
 else
 	./node_modules/karma/bin/karma start
