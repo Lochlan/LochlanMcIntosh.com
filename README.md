@@ -1,6 +1,6 @@
 # [LochlanMcIntosh.com](http://www.lochlanmcintosh.com/)
 
-[![Build Status](https://travis-ci.org/Lochlan/LochlanMcIntosh.com.png?branch=master)](https://travis-ci.org/Lochlan/LochlanMcIntosh.com)
+[![Build Status](https://img.shields.io/travis/Lochlan/LochlanMcIntosh.com/master.svg)](https://travis-ci.org/Lochlan/LochlanMcIntosh.com)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/lochlan.svg)](https://saucelabs.com/u/lochlan)
 
