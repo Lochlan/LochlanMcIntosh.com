@@ -196,7 +196,7 @@ $(SRC_SCSS_FONTS): node_modules
 		--out $@
 
 $(VENV_ACTIVATE): requirements.txt
-	test -d $(VENV_DIRECTORY) || virtualenv --no-site-packages --python=$(which python3) $(VENV_DIRECTORY)
+	test -d $(VENV_DIRECTORY) || virtualenv --no-site-packages --python=$(shell which python3) $(VENV_DIRECTORY)
 	. $@; pip install --requirement requirements.txt --upgrade
 	touch $@
 
