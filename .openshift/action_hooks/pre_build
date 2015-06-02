@@ -12,3 +12,7 @@ ensure_node_is_installed
 echo "Export commit hash to DEPLOYED_GIT_COMMIT_HASH for versioning static files"
 cat ${OPENSHIFT_HOMEDIR}git/${OPENSHIFT_APP_NAME}.git/refs/heads/${OPENSHIFT_DEPLOYMENT_BRANCH} \
     > ${OPENSHIFT_HOMEDIR}.env/user_vars/DEPLOYED_GIT_COMMIT_HASH
+
+# TODO only export this if it doesn't already exist
+echo "Export Python WSGI entry point OPENSHIFT_PYTHON_WSGI_APPLICATION=wsgi/wsgi.py"
+echo "wsgi/wsgi.py" > ${OPENSHIFT_HOMEDIR}.env/user_vars/OPENSHIFT_PYTHON_WSGI_APPLICATION
