@@ -33,7 +33,7 @@ module.exports = function(config) {
 
         SL_Safari: {
             browserName: 'safari',
-            version: '8',
+            version: '7',
         },
 
         'SL_Android_Emulator_5.1': {
