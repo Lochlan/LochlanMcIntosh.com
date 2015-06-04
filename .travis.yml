@@ -17,3 +17,13 @@ env:
 
 notifications:
   email: false
+
+deploy:
+  provider: openshift
+  user: lochlan.mcintosh@gmail.com
+  password:
+    secure: lWbggpFeqRrDdzd5GatMy3mUnDsK0fyALhFV2DbH6g3HHUpNa4OhOADJEkUu+6ahU1KAMksZ/GxZ835hVAMuMD/6g5RK/LyDQDNr/KFERP3QPZG69NW5EmUsCtvkAdK8tPeHtmTfTZmgmizTGaJoTrvunarVxJ5LItM8HO8kZA4=
+  app: lochlanmcintoshcom
+  domain: lochlan
+  on:
+    repo: Lochlan/LochlanMcIntosh.com
