@@ -27,3 +27,4 @@ deploy:
   domain: lochlan
   on:
     repo: Lochlan/LochlanMcIntosh.com
+    python: "3.3"
