@@ -6,7 +6,7 @@ install:
   - "pip install --requirement requirements.txt --upgrade"
   - "npm install"
 script:
-  - "make test"
+  - "make lint test"
 
 addons:
   sauce_connect: true
