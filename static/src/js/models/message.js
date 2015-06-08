@@ -1,6 +1,7 @@
 define([
+    'underscore',
     'models/promise_validate_model',
-], function (PromiseValidateModel) {
+], function (_, PromiseValidateModel) {
     'use strict';
 
     var Message = PromiseValidateModel.extend({
@@ -11,7 +12,7 @@ define([
             text: '',
         },
 
-        validate: function (attributes, options) {
+        validate: function (attributes) {
 
             var errors = _.extend(
                 {},
