@@ -29,7 +29,7 @@ define([
             var modelSaveReturnValue;
             var modelSaveOnRejectedReason;
 
-            describe('and failing validation', function () {
+            describe('when failing validation', function () {
                 beforeEach(function () {
                     model = new TestModelFailingValidation();
                     modelSaveReturnValue = model.save().then(
@@ -51,7 +51,7 @@ define([
                 });
             });
 
-            describe('and passing validation', function () {
+            describe('when passing validation', function () {
                 beforeEach(function () {
                     model = new TestModelPassingValidation();
                     modelSaveReturnValue = model.save();
