@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 
@@ -13,4 +14,7 @@ urlpatterns = patterns('',
     url(r'^api/', include('lochlanmcintoshcom.api.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^browserconfig\.xml$', RedirectView.as_view(url='/static/images/favicons/browserconfig.xml')),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicons/favicon.ico')),
 )
