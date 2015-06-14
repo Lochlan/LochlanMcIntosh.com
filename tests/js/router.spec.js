@@ -1,9 +1,10 @@
 define([
+    'router',
+
     'jquery',
     'underscore',
     'backbone',
-    'router',
-], function ($, _, Backbone, Router) {
+], function (Router, $, _, Backbone) {
     'use strict';
 
     describe('router', function () {

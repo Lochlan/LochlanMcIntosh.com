@@ -1,10 +1,11 @@
 define([
+    'views/transitioner',
+
     'jquery',
     'underscore',
-    'views/transitioner',
     'views/static',
     'templates/transitioner',
-], function ($, _, TransitionerView, StaticView, transitionerTemplate) {
+], function (TransitionerView, $, _, StaticView, transitionerTemplate) {
     'use strict';
 
     describe('transitioner view', function () {

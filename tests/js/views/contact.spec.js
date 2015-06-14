@@ -1,7 +1,8 @@
 define([
-    'underscore',
     'views/contact',
-], function (_, ContactView) {
+
+    'underscore',
+], function (ContactView, _) {
     'use strict';
 
     describe('contact view', function () {

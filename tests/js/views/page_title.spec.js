@@ -1,5 +1,6 @@
 define([
     'views/page_title',
+
     'models/app_state',
 ], function (PageTitleView, appState) {
     'use strict';

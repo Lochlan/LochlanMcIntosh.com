@@ -1,8 +1,9 @@
 define([
+    'views/static',
+
     'underscore',
     'backbone',
-    'views/static',
-], function (_, Backbone, StaticView) {
+], function (StaticView, _, Backbone) {
     'use strict';
 
     describe('static view', function () {
