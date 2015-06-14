@@ -72,7 +72,6 @@ SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 
 VENV_DIRECTORY = env
 VENV_ACTIVATE = $(VENV_DIRECTORY)/bin/activate
-VENV_MANAGEPY = . $(VENV_ACTIVATE); python manage.py
 
 
 ifdef PRODUCTION
@@ -125,11 +124,11 @@ lint-js: makedeps/jshint.d
 lint-travis: makedeps/travis-lint.d
 
 migrate: venv
-	$(VENV_MANAGEPY) migrate
+	. $(VENV_ACTIVATE); python manage.py migrate
 
 runserver: venv migrate build
     # --insecure option forces serving of static files if DEBUG=False
-	$(VENV_MANAGEPY) runserver 0.0.0.0:8000 --insecure
+	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000 --insecure
 
 test: lint test-python test-js
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
@@ -144,7 +143,7 @@ else
 endif
 
 test-python: venv
-	$(VENV_MANAGEPY) test
+	. $(VENV_ACTIVATE); python manage.py test
 	. $(VENV_ACTIVATE); coverage html --directory=coverage/python
 
 venv: $(VENV_ACTIVATE)
