@@ -1,6 +1,6 @@
 // Function.prototype.bind polyfill for PhantomJS (pre-2.0)
 if (!Function.prototype.bind) {
-    Function.prototype.bind = function(oThis) {
+    Function.prototype.bind = function (oThis) {
         if (typeof this !== 'function') {
             // closest thing possible to the ECMAScript 5
             // internal IsCallable function
@@ -9,8 +9,8 @@ if (!Function.prototype.bind) {
 
         var aArgs   = Array.prototype.slice.call(arguments, 1),
                 fToBind = this,
-                fNOP    = function() {},
-                fBound  = function() {
+                fNOP    = function () {},
+                fBound  = function () {
                     return fToBind.apply(this instanceof fNOP && oThis
                                  ? this
                                  : oThis,
@@ -32,11 +32,11 @@ if (!window.location.origin) {
 var allTestFiles = [];
 var TEST_REGEXP = /(spec|test)\.js$/i;
 
-var pathToModule = function(path) {
+var pathToModule = function (path) {
     return path.replace(/^\/base\//, '../../../').replace(/\.js$/, '');
 };
 
-Object.keys(window.__karma__.files).forEach(function(file) {
+Object.keys(window.__karma__.files).forEach(function (file) {
     if (TEST_REGEXP.test(file)) {
         // Normalize paths to RequireJS module names.
         allTestFiles.push(pathToModule(file));

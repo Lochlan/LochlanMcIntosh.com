@@ -33,7 +33,7 @@ define([
             return this;
         },
 
-        renderTemplate: function(templateKey) {
+        renderTemplate: function (templateKey) {
             return this.render(templateKey);
         },
 

@@ -36,7 +36,7 @@ define([
                 location: '/',
             });
 
-            $(document).on('click', 'a[href^="/"]', function(event) {
+            $(document).on('click', 'a[href^="/"]', function (event) {
                 event.preventDefault();
                 Backbone.history.navigate(event.currentTarget.pathname, {
                     trigger: true,

@@ -1,7 +1,7 @@
 var _ = require('underscore');
 var karmaConfig = require('./karma.conf.js');
 
-module.exports = function(config) {
+module.exports = function (config) {
 
     if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
         console.log('Set SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables');
