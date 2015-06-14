@@ -6,98 +6,98 @@
 
 
 {% block shared %}
-<p>Please contact me for more information using the below form, or by e-mailing me directly at <a href="mailto:info@lochlanmcintosh.com?subject={{ subject }}&body={{ text }}">info@lochlanmcintosh.com</a>.</p>
+    <p>Please contact me for more information using the below form, or by e-mailing me directly at <a href="mailto:info@lochlanmcintosh.com?subject={{ subject }}&body={{ text }}">info@lochlanmcintosh.com</a>.</p>
 
-<form>
-    <p>
-        <input
-            name="name"
-            placeholder="Name"
-            required
-            type="text"
-            value="{{ name }}"
-        >
-    </p>
+    <form>
+        <p>
+            <input
+                name="name"
+                placeholder="Name"
+                required
+                type="text"
+                value="{{ name }}"
+            >
+        </p>
 
-    {% if errorJSON.name %}
-        <div class="form_error">
-            {% for error_text in errorJSON.name %}
-                <p>{{ error_text }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% if errorJSON.name %}
+            <div class="form_error">
+                {% for error_text in errorJSON.name %}
+                    <p>{{ error_text }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    <p>
-        <input
-            name="email"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            placeholder="E-Mail Address"
-            required
-            type="email"
-            value="{{ email }}"
-        >
-    </p>
+        <p>
+            <input
+                name="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                placeholder="E-Mail Address"
+                required
+                type="email"
+                value="{{ email }}"
+            >
+        </p>
 
-    {% if errorJSON.email %}
-        <div class="form_error">
-            {% for error_text in errorJSON.email %}
-                <p>{{ error_text }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% if errorJSON.email %}
+            <div class="form_error">
+                {% for error_text in errorJSON.email %}
+                    <p>{{ error_text }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    <p>
-        <input
-            name="subject"
-            placeholder="Subject"
-            required
-            type="text"
-            value="{{ subject }}"
-        >
-    </p>
+        <p>
+            <input
+                name="subject"
+                placeholder="Subject"
+                required
+                type="text"
+                value="{{ subject }}"
+            >
+        </p>
 
-    {% if errorJSON.subject %}
-        <div class="form_error">
-            {% for error_text in errorJSON.subject %}
-                <p>{{ error_text }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% if errorJSON.subject %}
+            <div class="form_error">
+                {% for error_text in errorJSON.subject %}
+                    <p>{{ error_text }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    <p>
-        <textarea
-            name="text"
-            placeholder="Message"
-            required
-        >{{ text }}</textarea>
-    </p>
+        <p>
+            <textarea
+                name="text"
+                placeholder="Message"
+                required
+            >{{ text }}</textarea>
+        </p>
 
-    {% if errorJSON.text %}
-        <div class="form_error">
-            {% for error_text in errorJSON.text %}
-                <p>{{ error_text }}</p>
-            {% endfor %}
-        </div>
-    {% endif %}
+        {% if errorJSON.text %}
+            <div class="form_error">
+                {% for error_text in errorJSON.text %}
+                    <p>{{ error_text }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-    <p>
-        <input
-            type="submit"
-            value="Send Message"
-            {% if disabled %}disabled{% endif %}
-        >
-    </p>
+        <p>
+            <input
+                type="submit"
+                value="Send Message"
+                {% if disabled %}disabled{% endif %}
+            >
+        </p>
 
-    {% if error_status_code %}
-        <div class="form_error">
-            <p>Error! There was a problem submitting your message.</p>
-        </div>
-    {% endif %}
+        {% if error_status_code %}
+            <div class="form_error">
+                <p>Error! There was a problem submitting your message.</p>
+            </div>
+        {% endif %}
 
-    {% if errorJSON.detail %}
-        <div class="form_error">
-            <p>{{ errorJSON.detail }}</p>
-        </div>
-    {% endif %}
-</form>
+        {% if errorJSON.detail %}
+            <div class="form_error">
+                <p>{{ errorJSON.detail }}</p>
+            </div>
+        {% endif %}
+    </form>
 {% endblock %}
