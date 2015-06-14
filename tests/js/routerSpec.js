@@ -101,15 +101,7 @@ define([
             });
         });
 
-        describe('when calling the route method home', function () {
-            beforeEach(function () {
-                router.home();
-            });
-
-            it('should call router.transitioner', function () {
-                expect(router.transition).toHaveBeenCalled();
-            });
-        });
+        // route methods
 
         describe('when calling the route method contact', function () {
             var oldContactView;
@@ -134,6 +126,16 @@ define([
                 spyOn(router.views.transitioner, 'transition');
                 router.contact();
                 expect(oldContactView).toEqual(router.views.contact);
+            });
+        });
+
+        describe('when calling the route method home', function () {
+            beforeEach(function () {
+                router.home();
+            });
+
+            it('should call router.transitioner', function () {
+                expect(router.transition).toHaveBeenCalled();
             });
         });
 
