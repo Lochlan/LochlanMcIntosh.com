@@ -11,7 +11,7 @@ module.exports = function (config) {
         files: [
             'test-main.js',
             {pattern: 'static/src/js/**/*.js', included: false},
-            {pattern: 'tests/js/**/*.spec.js', included: false}
+            {pattern: 'tests/js/**/*.spec.js', included: false},
         ],
 
         // list of files to exclude
@@ -30,7 +30,7 @@ module.exports = function (config) {
 
         coverageReporter: {
             type : 'html',
-            dir : 'coverage/js/'
+            dir : 'coverage/js/',
         },
 
         // test results reporter to use
@@ -57,7 +57,7 @@ module.exports = function (config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: true
+        singleRun: true,
 
     });
 };
