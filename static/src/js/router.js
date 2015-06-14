@@ -17,6 +17,8 @@ define([
             'home(/)': 'staticPage',
             'portfolio(/)': 'staticPage',
             'resume(/)': 'staticPage',
+
+            '*notFound': 'notFound',
         },
 
         // views that should persist across page transitions
@@ -68,6 +70,10 @@ define([
 
         home: function () {
             this.staticPage('home');
+        },
+
+        notFound: function () {
+            this.staticPage('notFound');
         },
 
         staticPage: function (templateName) {

@@ -2,9 +2,12 @@ define([
     'backbone',
     'templates/about',
     'templates/home',
+    'templates/not-found',
     'templates/portfolio',
     'templates/resume',
-], function (Backbone, aboutTemplate, homeTemplate, portfolioTemplate, resumeTemplate) {
+], function (Backbone,
+    aboutTemplate, homeTemplate, notFoundTemplate, portfolioTemplate, resumeTemplate
+) {
     'use strict';
 
     var StaticView = Backbone.View.extend({
@@ -13,6 +16,7 @@ define([
         templates: {
             about: aboutTemplate,
             home: homeTemplate,
+            notFound: notFoundTemplate,
             portfolio: portfolioTemplate,
             resume: resumeTemplate,
         },

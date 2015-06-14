@@ -47,6 +47,7 @@ define([
                 'transition',
                 'contact',
                 'home',
+                'notFound',
                 'staticPage',
             ].forEach(function (methodName) {
                 it('should have a method called ' + methodName, function () {
@@ -132,6 +133,16 @@ define([
         describe('when calling the route method home', function () {
             beforeEach(function () {
                 router.home();
+            });
+
+            it('should call router.transitioner', function () {
+                expect(router.transition).toHaveBeenCalled();
+            });
+        });
+
+        describe('when calling the route method notFound', function () {
+            beforeEach(function () {
+                router.notFound();
             });
 
             it('should call router.transitioner', function () {

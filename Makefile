@@ -128,7 +128,8 @@ migrate: venv
 	$(VENV_MANAGEPY) migrate
 
 runserver: venv migrate build
-	$(VENV_MANAGEPY) runserver 0.0.0.0:8000
+    # --insecure option forces serving of static files if DEBUG=False
+	$(VENV_MANAGEPY) runserver 0.0.0.0:8000 --insecure
 
 test: lint test-python test-js
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
