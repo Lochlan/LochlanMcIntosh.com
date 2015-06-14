@@ -81,7 +81,7 @@ ifdef PRODUCTION
 	NPM_FLAGS = --production
 	SASS_FLAGS = --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none
 else
-	ALL_PREREQUISITES = venv lint test
+	ALL_PREREQUISITES = venv test
 	R.JS_FLAGS = optimize=none
 	SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 endif
@@ -130,7 +130,7 @@ migrate: venv
 runserver: venv migrate build
 	$(VENV_MANAGEPY) runserver 0.0.0.0:8000
 
-test: test-python test-js
+test: lint test-python test-js
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 ifdef CI
     ifdef TRAVIS
