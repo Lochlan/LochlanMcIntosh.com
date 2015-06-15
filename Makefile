@@ -144,7 +144,7 @@ endif
 
 test-python: venv
 	. $(VENV_ACTIVATE); python manage.py test
-	. $(VENV_ACTIVATE); coverage html --directory=coverage/python
+	. $(VENV_ACTIVATE); coverage html --directory=coverage/python --omit=./env/*,./tests/*
 
 venv: $(VENV_ACTIVATE)
 
