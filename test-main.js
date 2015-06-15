@@ -29,6 +29,12 @@ if (!window.location.origin) {
     window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
 }
 
+// Hack for PhantomJS, Android 4 (window.name defaults to "context")
+// Swig templates look for variables in the global namespace
+// An unset template variable {{ name }} has the value of window.name
+// See: https://github.com/paularmstrong/swig/issues/559
+window.name = '';
+
 var allTestFiles = [];
 var TEST_REGEXP = /(spec|test)\.js$/i;
 
