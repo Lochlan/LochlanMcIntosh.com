@@ -10,20 +10,29 @@ define([
             model = appState;
         });
 
-        it('has default properties', function () {
-            expect(model.defaults).toBeDefined();
+        [
+            'defaults',
+        ].forEach(function (property) {
+            it('should have a property called ' + property, function () {
+                expect(model[property]).toBeDefined();
+            });
         });
 
-        it('has attribute page_title', function () {
-            expect(model.has('page_title')).toBe(true);
+        [
+            'page_title',
+            'page_title_root',
+        ].forEach(function (attribute) {
+            it('should have an attribute called ' + attribute, function () {
+                expect(model.has(attribute)).toBe(true);
+            });
         });
 
-        it('has attribute page_title_root', function () {
-            expect(model.has('page_title_root')).toBe(true);
-        });
-
-        it('should have a getLongPageTitle method', function () {
-            expect(model.getLongPageTitle).toBeDefined();
+        [
+            'getLongPageTitle',
+        ].forEach(function (method) {
+            it('should have a method called ' + method, function () {
+                expect(typeof model[method]).toEqual('function');
+            });
         });
 
         describe('when calling getLongPageTitle', function () {
