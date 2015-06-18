@@ -65,12 +65,11 @@ define([
         },
 
         transition: function (requestedView) {
-            this.model.set({
-                incoming_view: requestedView,
-            });
+            this.model.enqueueIncomingView(requestedView);
         },
         initializeTransition: function () {
             if (!this.model.has('incoming_view')) {
+                this.model.checkQueue();
                 return;
             }
 
@@ -98,7 +97,7 @@ define([
 
             this.model.set({
                 active_view: this.model.get('incoming_view'),
-                incoming_view: undefined,
+                incoming_view: null,
             });
         },
 
