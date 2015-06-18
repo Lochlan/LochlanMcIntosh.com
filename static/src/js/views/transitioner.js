@@ -4,8 +4,7 @@ define([
     'models/app_state',
     'models/transitioner',
     'templates/transitioner',
-    'views/static',
-], function (_, Backbone, appState, Model, template, StaticView) {
+], function (_, Backbone, appState, Model, template) {
     'use strict';
 
     var TransitionerView = Backbone.View.extend({
@@ -14,18 +13,13 @@ define([
         template: template,
 
         initialize: function (options) {
-            options = options || {};
+            if (!options || !options.active_view) {
+                throw new Error('options.active_view required');
+            }
 
-            // set inital view to options.active_view or whatever is already on the page
             this.model = new Model({
-                active_view: options.active_view || new StaticView({
-                    template: _.template(this.$('[data-backbone-transitioner-active]').html() || ''),
-                }),
+                active_view: options.active_view,
             });
-
-            // set element on active view
-            this.model.get('active_view')
-                .setElement(this.$('[data-backbone-transitioner-active]'));
 
             this.$el.addClass('transitioner_container');
         },
