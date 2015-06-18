@@ -4,7 +4,7 @@ define([
     'models/app_state',
     'models/transitioner',
     'templates/transitioner',
-], function (_, Backbone, appState, Model, template) {
+], function (_, Backbone, appState, Transitioner, template) {
     'use strict';
 
     var TransitionerView = Backbone.View.extend({
@@ -17,7 +17,7 @@ define([
                 throw new Error('options.active_view required');
             }
 
-            this.model = new Model({
+            this.model = new Transitioner({
                 active_view: options.active_view,
             });
 
