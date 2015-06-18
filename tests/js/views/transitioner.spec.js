@@ -13,6 +13,7 @@ define([
         beforeEach(function () {
             spyOn(Backbone.View.prototype, 'render').and.callThrough();
             spyOn(TransitionerView.prototype, 'render').and.callThrough();
+            spyOn(TransitionerView.prototype, 'initializeTransition').and.callThrough();
 
             initialActiveView = new Backbone.View();
             view = new TransitionerView({
@@ -46,6 +47,7 @@ define([
 
             [
                 'getTransitionEndEventName',
+                'initializeTransition',
                 'onTransitioned',
                 'startTransitionAnimation',
                 'transition',
@@ -110,6 +112,10 @@ define([
 
             it('should call render', function () {
                 expect(view.render).toHaveBeenCalled();
+            });
+
+            it('should call initializeTransition', function () {
+                expect(view.initializeTransition).toHaveBeenCalled();
             });
 
             it('should render the active view', function () {
@@ -193,6 +199,10 @@ define([
 
             it('should set the incoming view to undefined', function () {
                 expect(view.model.get('incoming_view')).not.toBeDefined();
+            });
+
+            it('should call render', function () {
+                expect(view.render).toHaveBeenCalled();
             });
         });
     });

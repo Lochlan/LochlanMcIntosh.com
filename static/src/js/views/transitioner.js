@@ -22,6 +22,11 @@ define([
             });
 
             this.$el.addClass('transitioner_container');
+
+            this.listenTo(this.model, 'change', function () {
+                this.render();
+                this.initializeTransition();
+            });
         },
 
         render: function () {
@@ -63,8 +68,11 @@ define([
             this.model.set({
                 incoming_view: requestedView,
             });
-
-            this.render();
+        },
+        initializeTransition: function () {
+            if (!this.model.has('incoming_view')) {
+                return;
+            }
 
             this.model.get('incoming_view')
                 .$el.removeClass('hide');
@@ -92,8 +100,6 @@ define([
                 active_view: this.model.get('incoming_view'),
                 incoming_view: undefined,
             });
-
-            this.render();
         },
 
     });
