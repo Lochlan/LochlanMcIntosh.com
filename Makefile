@@ -130,7 +130,12 @@ runserver: venv migrate build
     # --insecure option forces serving of static files if DEBUG=False
 	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000 --insecure
 
-test: lint test-python test-js
+test:\
+    lint\
+    test-python\
+    test-js\
+    test-webdriver\
+
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 ifdef CI
     ifdef TRAVIS
@@ -141,6 +146,12 @@ ifdef CI
 else
 	./node_modules/karma/bin/karma start
 endif
+test-webdriver:
+	make runserver &
+	./node_modules/.bin/selenium-standalone install --version=2.45.0 --baseURL=http://selenium-release.storage.googleapis.com
+	./node_modules/.bin/selenium-standalone install --drivers.chrome.version=2.15 --drivers.chrome.baseURL=http://chromedriver.storage.googleapis.com
+	./node_modules/.bin/selenium-standalone start &
+	node ./tests/webdriver/test.js
 
 test-python: venv
 	. $(VENV_ACTIVATE); python manage.py test
