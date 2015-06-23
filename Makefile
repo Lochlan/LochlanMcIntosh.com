@@ -151,7 +151,7 @@ test-webdriver:
 	./node_modules/.bin/selenium-standalone install --version=2.45.0 --baseURL=http://selenium-release.storage.googleapis.com
 	./node_modules/.bin/selenium-standalone install --drivers.chrome.version=2.15 --drivers.chrome.baseURL=http://chromedriver.storage.googleapis.com
 	./node_modules/.bin/selenium-standalone start &
-	node ./tests/webdriver/test.js
+	sleep 10 && node ./tests/webdriver/test.js
 
 test-python: venv
 	. $(VENV_ACTIVATE); python manage.py test
