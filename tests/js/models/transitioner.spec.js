@@ -67,7 +67,29 @@ define([
         });
 
         describe('when checking the queue', function () {
-            // TODO
+            var requestedView;
+
+            describe('when the queue has data', function () {
+                beforeEach(function () {
+                    requestedView = new Backbone.View();
+                    model.incomingViewQueue.enqueue(requestedView);
+                    model.checkQueue();
+                });
+
+                it('should set the incoming view to the dequeued view', function () {
+                    expect(model.get('incoming_view')).toEqual(requestedView);
+                });
+            });
+
+            describe('when the queue is empty', function () {
+                beforeEach(function () {
+                    model.checkQueue();
+                });
+
+                it('should set the incoming view to undefined', function () {
+                    expect(model.get('incoming_view')).toEqual(undefined);
+                });
+            });
         });
     });
 
