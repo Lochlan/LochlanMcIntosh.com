@@ -41,7 +41,6 @@
     "karma-webdriver-launcher": "1.0.3",
     "phantomjs": "1.9.17",
     "sauceconnect-runner": "0.2.0",
-    "selenium-standalone": "^4.4.2",
     "webdriverio": "2.4.5"
   },
   "private": true

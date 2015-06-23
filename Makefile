@@ -146,12 +146,10 @@ ifdef CI
 else
 	./node_modules/karma/bin/karma start
 endif
-test-webdriver:
+test-webdriver: venv migrate build
 	make runserver &
-	./node_modules/.bin/selenium-standalone install --version=2.45.0 --baseURL=http://selenium-release.storage.googleapis.com
-	./node_modules/.bin/selenium-standalone install --drivers.chrome.version=2.15 --drivers.chrome.baseURL=http://chromedriver.storage.googleapis.com
-	./node_modules/.bin/selenium-standalone start &
-	sleep 10 && node ./tests/webdriver/test.js
+	./node_modules/.bin/phantomjs --webdriver=4444 &
+	sleep 3 && node ./tests/webdriver/test.js
 
 test-python: venv
 	. $(VENV_ACTIVATE); python manage.py test
