@@ -87,7 +87,7 @@ endif
 
 ifdef CI
     ifdef SAUCE_USERNAME
-		KARMA_CONFIG = karma.conf-sauce.js
+		KARMA_CONFIG = karma.sauce.conf.js
     endif
 endif
 
