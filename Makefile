@@ -130,6 +130,9 @@ runserver: venv migrate build
     # --insecure option forces serving of static files if DEBUG=False
 	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000 --insecure
 
+runserver-webdriver: node_modules
+	./node_modules/.bin/phantomjs --webdriver=4444
+
 test:\
     lint\
     test-python\
@@ -146,10 +149,18 @@ ifdef CI
 else
 	./node_modules/karma/bin/karma start
 endif
+
 test-webdriver: venv migrate build
-	make runserver &
-	./node_modules/.bin/phantomjs --webdriver=4444 &
-	sleep 3 && node ./tests/webdriver/test.js
+	@ if ! ps -ewwo pid,args | grep [p]ython\ manage.py\ runserver; then\
+		make runserver &\
+	fi
+
+	@ if ! ps -ewwo pid,args | grep [n]ode_modules/.bin/phantomjs\ [-][-]webdriver=4444; then\
+		make runserver-webdriver &\
+	fi
+
+	sleep 3
+	node ./tests/webdriver/test.js
 
 test-python: venv
 	. $(VENV_ACTIVATE); python manage.py test
