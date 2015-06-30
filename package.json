@@ -30,7 +30,7 @@
     "webfont-dl": "0.1.2"
   },
   "devDependencies": {
-    "jasmine-core": "2.3.4",
+    "jasmine": "2.3.1",
     "jshint": "2.8.0",
     "karma": "0.12.37",
     "karma-coverage": "0.4.2",

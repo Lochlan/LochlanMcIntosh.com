@@ -160,7 +160,7 @@ test-webdriver: venv migrate build
 	fi
 
 	sleep 3
-	node ./tests/webdriver/test.js
+	./node_modules/.bin/wdio wdio.conf.js
 
 test-python: venv
 	. $(VENV_ACTIVATE); python manage.py test
