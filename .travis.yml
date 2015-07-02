@@ -3,12 +3,12 @@ python:
   - "3.3"
   - "3.4"
 install:
-  - "pip install --requirement requirements.txt --upgrade"
-  - "nvm install v0.12.5"
-  - "npm install npm@3.0.0 -g"
-  - "npm install"
+  - pip install --requirement requirements.txt --upgrade
+  - nvm install v0.12.5
+  - npm install npm@3.0.0 -g
+  - npm install
 script:
-  - "make test"
+  - make test
 
 addons:
   sauce_connect: true
