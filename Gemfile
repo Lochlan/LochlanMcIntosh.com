@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'sass', '=3.4.13'
+gem 'sass', '=3.4.16'
 
 group :development do
     gem 'travis-lint', '=2.0.0'
