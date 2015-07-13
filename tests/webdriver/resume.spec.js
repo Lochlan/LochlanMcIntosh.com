@@ -2,16 +2,16 @@
 
 var assert = require('./lib/assertions.js');
 
-describe('Home page', function () {
+describe('Résumé page', function () {
     beforeEach(function (done) {
-        var url = '/';
+        var url = '/resume/';
 
         browser
             .url(url)
             .call(done);
     });
 
-    assert.itShouldHaveTheTitle('Lochlan McIntosh - Portland, OR. Web Developer and Software Engineer');
+    assert.itShouldHaveTheTitle('Lochlan McIntosh - Résumé');
 
     assert.shared();
 });
