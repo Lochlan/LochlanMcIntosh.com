@@ -37,12 +37,12 @@ define([
         submit: function (event) {
             event.preventDefault();
 
-            this.model.save(
+            this.model.set(
                 _.extend({
                     disabled: true,
                     error_status_code: 0,
                 }, this.$('form').serializeObject())
-            ).then(
+            ).save().then(
                 this.submitSuccess,
                 this.submitError
             );
