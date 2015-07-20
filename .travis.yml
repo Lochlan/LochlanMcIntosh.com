@@ -1,32 +1,29 @@
 language: python
 python:
-  - "3.3"
-  - "3.4"
+- '3.3'
+- '3.4'
 install:
-# Hack: installs phantomjs 2.0.0 before npm install
-# Skips phantomjs npm package installation, which is broken under ubuntu 12.04
-  - mkdir travis-phantomjs
-  - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  - tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-  - export PATH=$PWD/travis-phantomjs:$PATH
-
-  - pip install --requirement requirements.txt --upgrade
-  - nvm install v0.12.5
-  - npm install npm@3.0.0 -g
-  - npm install
+- mkdir travis-phantomjs
+- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
+- export PATH=$PWD/travis-phantomjs:$PATH
+- pip install --requirement requirements.txt --upgrade
+- nvm install v0.12.5
+- npm install npm@3.0.0 -g
+- npm install
 script:
-  - make test
-
+- make test
 addons:
   sauce_connect: true
 env:
   global:
-    - secure: P9oBHBePwRduFw/lJpUAQwDQL8hpfbpqdHi5QeVzqNCzs7VYJ+EdbXBGFJ9ZvRiryKXAnIA3la/LitY/rjUIxgEPMF3vTYEjRPv6JLDsDQf4daxU3d/NAxJL1mjPFY/DdBC1yeGjyi7JcfGsrunjQtRWhPfXCm3q/saCVJphcr0=
-    - secure: b0eCVMA6OT0m4T/MthVihXARXy6dYLAOB7/WMR8zmTRQzjvFa5s81qSjFYCDdzCm6acVMdoT71IqkrRMQiCraLcicuLBC5P5sWyeKbHZTS7o6aD1OGkiYQ3sZ4xU2NL8FTH6UOyeIHororvR5KZJZFooKVFIocQKrxA9qWjxaX0=
-
+  - secure: P9oBHBePwRduFw/lJpUAQwDQL8hpfbpqdHi5QeVzqNCzs7VYJ+EdbXBGFJ9ZvRiryKXAnIA3la/LitY/rjUIxgEPMF3vTYEjRPv6JLDsDQf4daxU3d/NAxJL1mjPFY/DdBC1yeGjyi7JcfGsrunjQtRWhPfXCm3q/saCVJphcr0=
+  - secure: b0eCVMA6OT0m4T/MthVihXARXy6dYLAOB7/WMR8zmTRQzjvFa5s81qSjFYCDdzCm6acVMdoT71IqkrRMQiCraLcicuLBC5P5sWyeKbHZTS7o6aD1OGkiYQ3sZ4xU2NL8FTH6UOyeIHororvR5KZJZFooKVFIocQKrxA9qWjxaX0=
 notifications:
   email: false
-
+  slack:
+    secure: rTIZQcotXWytY0Xxg6HaqELxV7JVOS7aXyieVKCpgsGokBlxR+kVhjddVzNTbsHVgc8wSNBsp2nAwH645i1YJBEHAucJqg3Wkppg6efsozztILAa8GqWtXm411NUecq5gCrHcRa+Tbwl1O+2vD5sy0b+crsHrWR1EYk9xMSGPq0=
 deploy:
   provider: openshift
   user: lochlan.mcintosh@gmail.com
@@ -36,4 +33,4 @@ deploy:
   domain: lochlan
   on:
     repo: Lochlan/LochlanMcIntosh.com
-    python: "3.3"
+    python: '3.3'
