@@ -39,7 +39,7 @@
     "karma-phantomjs-launcher": "0.2.0",
     "karma-requirejs": "0.2.2",
     "karma-webdriver-launcher": "1.0.3",
-    "phantomjs": "git://github.com/Lochlan/phantomjs2.git#bf9921699e33c7fdfac11342399f9883771cea45",
+    "phantomjs": "git://github.com/Lochlan/phantomjs2.git#add3fd24dad48c0c4b2fe4d336442efea30e5f61",
     "sauceconnect-runner": "0.2.0",
     "webdriverio": "3.1.0"
   },
