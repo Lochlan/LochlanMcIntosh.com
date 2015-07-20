@@ -27,6 +27,8 @@ define([
                 this.render();
                 this.initializeTransition();
             });
+
+            this.render();
         },
 
         render: function () {
