@@ -89,6 +89,11 @@ ifdef CI
     ifdef SAUCE_USERNAME
 		KARMA_CONFIG = karma.sauce.conf.js
     endif
+
+    # sauce connect set to run via travis config
+    ifndef TRAVIS
+		SAUCECONNECT_RUN = ./node_modules/.bin/sc-run
+    endif
 endif
 
 # targets
@@ -140,15 +145,7 @@ test:\
     test-webdriver\
 
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
-ifdef CI
-    ifdef TRAVIS
-		./node_modules/karma/bin/karma start $(KARMA_CONFIG)
-    else
-		./node_modules/.bin/sc-run ./node_modules/karma/bin/karma start $(KARMA_CONFIG)
-    endif
-else
-	./node_modules/karma/bin/karma start
-endif
+	$(SAUCECONNECT_RUN) ./node_modules/karma/bin/karma start $(KARMA_CONFIG)
 
 test-webdriver: venv migrate build
 	@ if ! ps -ewwo pid,args | grep [p]ython\ manage.py\ runserver; then\
