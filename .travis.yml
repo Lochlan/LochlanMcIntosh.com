@@ -20,6 +20,7 @@ env:
   global:
   - secure: P9oBHBePwRduFw/lJpUAQwDQL8hpfbpqdHi5QeVzqNCzs7VYJ+EdbXBGFJ9ZvRiryKXAnIA3la/LitY/rjUIxgEPMF3vTYEjRPv6JLDsDQf4daxU3d/NAxJL1mjPFY/DdBC1yeGjyi7JcfGsrunjQtRWhPfXCm3q/saCVJphcr0=
   - secure: b0eCVMA6OT0m4T/MthVihXARXy6dYLAOB7/WMR8zmTRQzjvFa5s81qSjFYCDdzCm6acVMdoT71IqkrRMQiCraLcicuLBC5P5sWyeKbHZTS7o6aD1OGkiYQ3sZ4xU2NL8FTH6UOyeIHororvR5KZJZFooKVFIocQKrxA9qWjxaX0=
+  - secure: VYpcz06fuK3D+exaewSI+S1L5+vesVO/ijUjz6UySUaC2Qtev0QSkA3HK6rw6tzZgQb+FEiJiSZ50Jh/niAj45qaRZVeOUm3av7a+Xgu2M007bCe+sRHrhv7FW94d4TYRvyjaCvc49zcK7H10hbCNx2N34IS/bBWTKy9v2Fycio=
 notifications:
   email: false
   slack:
