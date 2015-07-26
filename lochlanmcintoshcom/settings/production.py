@@ -18,6 +18,19 @@ ALLOWED_HOSTS = [
     socket.gethostname(),
 ]
 
+REST_FRAMEWORK.update({
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.ScopedRateThrottle',
+        'lochlanmcintoshcom.api.throttles.BurstRateThrottle',
+        'lochlanmcintoshcom.api.throttles.SustainedRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'burst': '60/min',
+        'mandrill': '10/day',
+        'sustained': '1000/day'
+    },
+})
+
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

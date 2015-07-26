@@ -5,14 +5,13 @@ from rest_framework.views import APIView
 from string import Template
 
 from .serializers import MessageSerializer
-from .throttles import MandrillUsageThrottle
 
 
 class Contact(APIView):
     """
     Sends an e-mail to the site owner.
     """
-    throttle_classes = (MandrillUsageThrottle,)
+    throttle_scope = 'mandrill'
 
     def post(self, request, format=None):
         serializer = MessageSerializer(data=request.data)

@@ -23,13 +23,3 @@ class ContactTests(APITestCase):
         """
         response = self.client.post('/api/contact/', {}, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    def test_post_contact_input_throttle(self):
-        """
-        Ensure POSTing to contact endpoint too much gives a 429 error.
-        """
-        # 11th API request and after will give a 429, see throttles.py
-        for i in range(0, 9):
-            response = self.client.post('/api/contact/', {}, format='json')
-
-        self.assertEqual(response.status_code, status.HTTP_429_TOO_MANY_REQUESTS)

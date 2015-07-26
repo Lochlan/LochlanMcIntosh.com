@@ -14,6 +14,14 @@ ALLOWED_HOSTS = [
     '*', # Required if DEBUG=False
 ]
 
+REST_FRAMEWORK.update({
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.ScopedRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'mandrill': '100/second', # effectively unlimited
+    },
+})
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
