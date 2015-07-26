@@ -135,7 +135,7 @@ runserver: venv migrate build
     # --insecure option forces serving of static files if DEBUG=False
 	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000 --insecure
 
-runserver-webdriver: node_modules
+runserver-webdriver-headless: node_modules
 	./node_modules/.bin/phantomjs --webdriver=4444
 
 test:\
@@ -153,7 +153,7 @@ test-webdriver: venv migrate build
 	fi
 
 	@ if ! ps -ewwo pid,args | grep [n]ode_modules/.bin/phantomjs\ [-][-]webdriver=4444; then\
-		make runserver-webdriver &\
+		make runserver-webdriver-headless &\
 	fi
 
 	sleep 3
