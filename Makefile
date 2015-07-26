@@ -142,12 +142,12 @@ test:\
     lint\
     test-python\
     test-js\
-    test-webdriver\
+    test-webdriver-headless\
 
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 	$(SAUCECONNECT_RUN) ./node_modules/karma/bin/karma start $(KARMA_CONFIG)
 
-test-webdriver: venv migrate build
+test-webdriver-headless: venv migrate build
 	@ if ! ps -ewwo pid,args | grep [p]ython\ manage.py\ runserver; then\
 		make runserver &\
 	fi
