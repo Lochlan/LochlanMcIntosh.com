@@ -18,8 +18,9 @@ This website is powered by:
 - [Sass](http://sass-lang.com/)
 
 And tested using:
-- [Karma](http://karma-runner.github.io/)
 - [Jasmine](http://jasmine.github.io/)
+- [Karma](http://karma-runner.github.io/)
+- [WebdriverIO](http://webdriver.io/)
 - [unittest](https://docs.python.org/3/library/unittest.html)
 
 # Development
