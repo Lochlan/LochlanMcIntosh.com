@@ -135,8 +135,7 @@ runserver: venv migrate build
     # --insecure option forces serving of static files if DEBUG=False
 	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000 --insecure
 
-runserver-webdriver: node_modules
-	./node_modules/.bin/selenium-standalone install
+runserver-webdriver: node_modules selenium-server-jar-file
 	./node_modules/.bin/selenium-standalone start
 
 runserver-webdriver-headless: node_modules
@@ -151,9 +150,31 @@ test:\
 test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
 	$(SAUCECONNECT_RUN) ./node_modules/karma/bin/karma start $(KARMA_CONFIG)
 
+test-webdriver-local: venv migrate build selenium-server-jar-file
+	@ if ! ps -ewwo pid,args | grep [p]ython\ manage.py\ runserver; then\
+		make runserver &\
+	fi
+
+    # make sure phantomjs ghostdriver isn't running
+	@ if ps -ewwo pid,args | grep [n]ode_modules/.bin/phantomjs\ [-][-]webdriver=4444; then\
+		pkill phantomjs;\
+	fi
+
+	@ if ! ps -ewwo pid,args | grep [n]ode_modules/.bin/selenium-standalone\ start; then\
+		make runserver-webdriver &\
+	fi
+
+	sleep 3
+	./node_modules/.bin/wdio tests/webdriver/config/wdio.local.conf.js
+
 test-webdriver-headless: venv migrate build
 	@ if ! ps -ewwo pid,args | grep [p]ython\ manage.py\ runserver; then\
 		make runserver &\
+	fi
+
+    # make sure selenium server standalone jar isn't running
+	@ if ps -ewwo pid,args | grep [n]ode_modules/.bin/selenium-standalone\ start; then\
+		kill `ps -wwo pid,args | grep [n]ode_modules/.bin/selenium-standalone\ start | sed 's%\ node\ [.]/node_modules/[.]bin/selenium-standalone\ start%%'`;\
 	fi
 
 	@ if ! ps -ewwo pid,args | grep [n]ode_modules/.bin/phantomjs\ [-][-]webdriver=4444; then\
@@ -244,6 +265,9 @@ makedeps/travis-lint.d: .travis.yml makedeps/gemfile.d
 	mkdir -p "$(@D)"
 	travis-lint
 	touch $@
+
+selenium-server-jar-file: node_modules
+	./node_modules/.bin/selenium-standalone install
 
 # performance settings
 
