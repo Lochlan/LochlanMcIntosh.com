@@ -24,7 +24,9 @@ define get-jshintignore-patterns
 	)
 endef
 
-# settings
+
+# file settings
+
 SRC_STATIC_PATH = static/src
 BUILD_STATIC_PATH = static
 
@@ -73,16 +75,20 @@ SRC_JS_VENDOR = $(addprefix $(SRC_JS_VENDOR_PATH)/,\
 VENV_DIRECTORY = env
 VENV_ACTIVATE = $(VENV_DIRECTORY)/bin/activate
 
+# environment-specific settings
+
+# development
+ALL_PREREQUISITES = venv test
+R.JS_FLAGS = optimize=none
+SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 
 ifdef PRODUCTION
+	ALL_PREREQUISITES =
 	BUNDLER_FLAGS = --without development
 	NO_COMMENT = ./node_modules/.bin/no-comment $@ $@
 	NPM_FLAGS = --production
+	R.JS_FLAGS =
 	SASS_FLAGS = --style compressed --load-path $(SRC_SCSS_PATH) --sourcemap=none
-else
-	ALL_PREREQUISITES = venv test
-	R.JS_FLAGS = optimize=none
-	SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 endif
 
 ifdef CI
@@ -95,6 +101,7 @@ ifdef CI
 		SAUCECONNECT_RUN = ./node_modules/.bin/sc-run
     endif
 endif
+
 
 # targets
 
@@ -268,6 +275,7 @@ makedeps/travis-lint.d: .travis.yml makedeps/gemfile.d
 
 selenium-server-jar-file: node_modules
 	./node_modules/.bin/selenium-standalone install
+
 
 # performance settings
 
