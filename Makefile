@@ -135,6 +135,10 @@ runserver: venv migrate build
     # --insecure option forces serving of static files if DEBUG=False
 	. $(VENV_ACTIVATE); python manage.py runserver 0.0.0.0:8000 --insecure
 
+runserver-webdriver: node_modules
+	./node_modules/.bin/selenium-standalone install
+	./node_modules/.bin/selenium-standalone start
+
 runserver-webdriver-headless: node_modules
 	./node_modules/.bin/phantomjs --webdriver=4444
 
