@@ -7,10 +7,6 @@ exports.config = {
         './tests/webdriver/**/*.spec.js',
     ],
 
-    capabilities: [
-        { browserName: 'phantomjs' },
-    ],
-
     logLevel: 'silent',
     coloredLogs: true,
     screenshotPath: 'shots',
