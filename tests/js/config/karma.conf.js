@@ -1,7 +1,7 @@
 module.exports = function (config) {
     config.set({
 
-        basePath: '',
+        basePath: '../../..',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -9,7 +9,7 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'test-main.js',
+            'tests/js/config/test-main.js',
             {pattern: 'static/src/js/**/*.js', included: false},
             {pattern: 'tests/js/**/*.spec.js', included: false},
         ],

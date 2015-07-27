@@ -79,6 +79,7 @@ VENV_ACTIVATE = $(VENV_DIRECTORY)/bin/activate
 
 # development
 ALL_PREREQUISITES = venv test
+KARMA_CONFIG = tests/js/config/karma.conf.js
 R.JS_FLAGS = optimize=none
 SASS_FLAGS = --style nested --load-path $(SRC_SCSS_PATH)
 
@@ -93,7 +94,7 @@ endif
 
 ifdef CI
     ifdef SAUCE_USERNAME
-		KARMA_CONFIG = karma.sauce.conf.js
+		KARMA_CONFIG = tests/js/config/karma.sauce.conf.js
     endif
 
     # sauce connect set to run via travis config
