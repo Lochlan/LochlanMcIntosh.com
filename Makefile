@@ -32,16 +32,16 @@ BUILD_STATIC_PATH = static
 
 SRC_DJANGO_TEMPLATES_PATH = templates/shared
 SRC_DJANGO_TEMPLATES = $(shell find $(SRC_DJANGO_TEMPLATES_PATH) -type f -name '*.html')
-SRC_JSTEMPLATES_PATH = $(SRC_STATIC_PATH)/swig
+SRC_JSTEMPLATES_PATH = $(SRC_STATIC_PATH)/templates
 BUILD_DJANGO_TEMPLATES = $(subst \
 	$(SRC_DJANGO_TEMPLATES_PATH),\
 	$(SRC_JSTEMPLATES_PATH),\
-	$(SRC_DJANGO_TEMPLATES:.html=.swig)\
+	$(SRC_DJANGO_TEMPLATES:.html=.tpl)\
 	)
 
-SRC_JSTEMPLATES = $(shell find $(SRC_JSTEMPLATES_PATH) -type f -name '*.swig') $(BUILD_DJANGO_TEMPLATES)
+SRC_JSTEMPLATES = $(shell find $(SRC_JSTEMPLATES_PATH) -type f -name '*.tpl') $(BUILD_DJANGO_TEMPLATES)
 BUILD_JSTEMPLATES_PATH = $(SRC_STATIC_PATH)/js/templates
-BUILD_JSTEMPLATES = $(subst $(SRC_JSTEMPLATES_PATH),$(BUILD_JSTEMPLATES_PATH),$(SRC_JSTEMPLATES:.swig=.js))
+BUILD_JSTEMPLATES = $(subst $(SRC_JSTEMPLATES_PATH),$(BUILD_JSTEMPLATES_PATH),$(SRC_JSTEMPLATES:.tpl=.js))
 
 SRC_JS_PATH = $(SRC_STATIC_PATH)/js
 SRC_JS = $(shell find $(SRC_JS_PATH) -type f -name '*.js')
@@ -205,10 +205,10 @@ $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $
 	mkdir -p "$(@D)"
 	$(SASS) $(SASS_FLAGS) $< $@
 
-$(SRC_JSTEMPLATES_PATH)/%.swig: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
+$(SRC_JSTEMPLATES_PATH)/%.tpl: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
 
-$(BUILD_JSTEMPLATES_PATH)/%.js: $(SRC_JSTEMPLATES_PATH)/%.swig $(SRC_JSTEMPLATES_PATH)/shared.html node_modules
+$(BUILD_JSTEMPLATES_PATH)/%.js: $(SRC_JSTEMPLATES_PATH)/%.tpl $(SRC_JSTEMPLATES_PATH)/shared.html node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/swig compile $<\
 		--wrap-start="\
