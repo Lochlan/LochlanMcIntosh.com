@@ -32,16 +32,16 @@ BUILD_STATIC_PATH = static
 
 SRC_DJANGO_TEMPLATES_PATH = templates/shared
 SRC_DJANGO_TEMPLATES = $(shell find $(SRC_DJANGO_TEMPLATES_PATH) -type f -name '*.html')
-SRC_SWIG_PATH = $(SRC_STATIC_PATH)/swig
+SRC_JSTEMPLATES_PATH = $(SRC_STATIC_PATH)/swig
 BUILD_DJANGO_TEMPLATES = $(subst \
 	$(SRC_DJANGO_TEMPLATES_PATH),\
-	$(SRC_SWIG_PATH),\
+	$(SRC_JSTEMPLATES_PATH),\
 	$(SRC_DJANGO_TEMPLATES:.html=.swig)\
 	)
 
-SRC_SWIG = $(shell find $(SRC_SWIG_PATH) -type f -name '*.swig') $(BUILD_DJANGO_TEMPLATES)
-BUILD_SWIG_PATH = $(SRC_STATIC_PATH)/js/templates
-BUILD_SWIG = $(subst $(SRC_SWIG_PATH),$(BUILD_SWIG_PATH),$(SRC_SWIG:.swig=.js))
+SRC_JSTEMPLATES = $(shell find $(SRC_JSTEMPLATES_PATH) -type f -name '*.swig') $(BUILD_DJANGO_TEMPLATES)
+BUILD_JSTEMPLATES_PATH = $(SRC_STATIC_PATH)/js/templates
+BUILD_JSTEMPLATES = $(subst $(SRC_JSTEMPLATES_PATH),$(BUILD_JSTEMPLATES_PATH),$(SRC_JSTEMPLATES:.swig=.js))
 
 SRC_JS_PATH = $(SRC_STATIC_PATH)/js
 SRC_JS = $(shell find $(SRC_JS_PATH) -type f -name '*.js')
@@ -116,7 +116,7 @@ clean:
 		$(BUILD_DJANGO_TEMPLATES)\
 		$(BUILD_FONTS_PATH)\
 		$(BUILD_JS_PATH)\
-		$(BUILD_SWIG_PATH)\
+		$(BUILD_JSTEMPLATES_PATH)\
 		$(SRC_SCSS_FONTS)\
 
 distclean: clean
@@ -155,7 +155,7 @@ test:\
     test-js\
     test-webdriver-headless\
 
-test-js: $(SRC_JS_VENDOR) $(BUILD_SWIG) node_modules
+test-js: $(SRC_JS_VENDOR) $(BUILD_JSTEMPLATES) node_modules
 	$(SAUCECONNECT_RUN) ./node_modules/karma/bin/karma start $(KARMA_CONFIG)
 
 test-webdriver-local: venv migrate build selenium-server-jar-file
@@ -205,10 +205,10 @@ $(BUILD_CSS_PATH)/%.css: $(SRC_SCSS_PATH)/%.scss $(SRC_SCSS) $(SRC_SCSS_FONTS) $
 	mkdir -p "$(@D)"
 	$(SASS) $(SASS_FLAGS) $< $@
 
-$(SRC_SWIG_PATH)/%.swig: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
+$(SRC_JSTEMPLATES_PATH)/%.swig: $(SRC_DJANGO_TEMPLATES_PATH)/%.html
 	cp $? $@
 
-$(BUILD_SWIG_PATH)/%.js: $(SRC_SWIG_PATH)/%.swig $(SRC_SWIG_PATH)/shared.html node_modules
+$(BUILD_JSTEMPLATES_PATH)/%.js: $(SRC_JSTEMPLATES_PATH)/%.swig $(SRC_JSTEMPLATES_PATH)/shared.html node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/swig compile $<\
 		--wrap-start="\
@@ -218,7 +218,7 @@ $(BUILD_SWIG_PATH)/%.js: $(SRC_SWIG_PATH)/%.swig $(SRC_SWIG_PATH)/shared.html no
 				});\
 			});" > $@
 
-$(BUILD_JS_PATH)/%.js: $(BUILD_SWIG) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
+$(BUILD_JS_PATH)/%.js: $(BUILD_JSTEMPLATES) $(SRC_JS_VENDOR) $(SRC_JS) node_modules
 	mkdir -p "$(@D)"
 	./node_modules/.bin/r.js -o build-config.js $(R.JS_FLAGS) name=$(basename $(@:$(BUILD_JS_PATH)/%=%)) out=$@
 	$(NO_COMMENT)
