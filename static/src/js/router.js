@@ -22,16 +22,16 @@ define([
         },
 
         // views that should persist across page transitions
-        views: {
-            contact: undefined,
-            page_title: undefined,
-            transitioner: undefined,
+        views: function () {
+            return {
+                contact: undefined,
+                page_title: new PageTitleView(),
+                transitioner: undefined,
+            };
         },
 
         initialize: function () {
-            this.views = {
-                page_title: new PageTitleView(),
-            };
+            this.views = _.result(this, 'views');
 
             Backbone.history.start({
                 pushState: true,
