@@ -1,11 +1,11 @@
 define([
     'underscore',
-    'backbone',
+    'views/base',
     'models/message',
     'templates/contact',
     'templates/contact-submitted',
     'templates/contact-error',
-], function (_, Backbone, Model, contactTpl, contactSubmittedTpl, contactErrorTpl) {
+], function (_, BaseView, Message, contactTpl, contactSubmittedTpl, contactErrorTpl) {
     'use strict';
 
     // Hack for Android 4 (window.name defaults to "context")
@@ -14,14 +14,14 @@ define([
     // See: https://github.com/paularmstrong/swig/issues/559
     window.name = '';
 
-    var ContactView = Backbone.View.extend({
+    var ContactView = BaseView.extend({
 
-        model: undefined,
+        model: function () {
+            return new Message();
+        },
         template: contactTpl,
 
         initialize: function () {
-            this.model = new Model();
-
             this.submitSuccess = this.submitSuccess.bind(this);
             this.submitError = this.submitError.bind(this);
 

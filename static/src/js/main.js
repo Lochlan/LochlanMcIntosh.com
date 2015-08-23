@@ -16,9 +16,9 @@ require.config({
 });
 
 require([
-    'router',
-], function (Router) {
+    'app',
+], function (App) {
     'use strict';
 
-    new Router();
+    new App();
 });

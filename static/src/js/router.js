@@ -1,37 +1,25 @@
 define([
     'jquery',
     'backbone',
-    'views/contact',
-    'views/page_title',
-    'views/static',
-    'views/transitioner',
-], function ($, Backbone, ContactView, PageTitleView, StaticView, TransitionerView) {
+], function ($, Backbone) {
     'use strict';
 
     var Router = Backbone.Router.extend({
 
+        app: undefined,
+
         routes: {
             '(/)': 'home',
-            'about(/)': 'staticPage',
+            'about(/)': 'about',
             'contact(/)': 'contact',
-            'home(/)': 'staticPage',
-            'portfolio(/)': 'staticPage',
-            'resume(/)': 'staticPage',
+            'home(/)': 'home',
+            'resume(/)': 'resume',
 
             '*notFound': 'notFound',
         },
 
-        // views that should persist across page transitions
-        views: {
-            contact: undefined,
-            page_title: undefined,
-            transitioner: undefined,
-        },
-
-        initialize: function () {
-            this.views = {
-                page_title: new PageTitleView(),
-            };
+        initialize: function (options) {
+            this.app = options.app;
 
             Backbone.history.start({
                 pushState: true,
@@ -46,43 +34,23 @@ define([
             });
         },
 
-        transition: function (view) {
-            // handle initial page load
-            if (!this.views.transitioner) {
-                this.views.transitioner = new TransitionerView({
-                    active_view: view,
-                    el: '.js-Backbone',
-                });
-                return;
-            }
-
-            this.views.transitioner.transition(view);
-        },
-
         // route methods
 
+        about: function () {
+            this.app.goTo.about();
+        },
         contact: function () {
-            if (!this.views.contact) {
-                this.views.contact = new ContactView();
-            }
-            this.transition(this.views.contact);
+            this.app.goTo.contact();
         },
-
         home: function () {
-            this.staticPage('home');
+            this.app.goTo.home();
         },
-
         notFound: function () {
-            this.staticPage('notFound');
+            this.app.goTo.notFound();
         },
-
-        staticPage: function (templateName) {
-            this.transition(new StaticView({
-                // remove any trailing slashes
-                template: templateName || Backbone.history.fragment.replace(/[\/]+$/, ''),
-            }));
+        resume: function () {
+            this.app.goTo.resume();
         },
-
     });
 
     return Router;

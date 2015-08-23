@@ -1,13 +1,13 @@
 define([
     'underscore',
-    'backbone',
+    'views/base',
     'models/app_state',
     'models/transitioner',
     'templates/transitioner',
-], function (_, Backbone, appState, Transitioner, template) {
+], function (_, BaseView, appState, Transitioner, template) {
     'use strict';
 
-    var TransitionerView = Backbone.View.extend({
+    var TransitionerView = BaseView.extend({
 
         model: undefined,
         template: template,
