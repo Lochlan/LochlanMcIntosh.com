@@ -3,10 +3,9 @@ define([
     'templates/about',
     'templates/home',
     'templates/not-found',
-    'templates/portfolio',
     'templates/resume',
 ], function (Backbone,
-    aboutTemplate, homeTemplate, notFoundTemplate, portfolioTemplate, resumeTemplate
+    aboutTemplate, homeTemplate, notFoundTemplate, resumeTemplate
 ) {
     'use strict';
 
@@ -17,7 +16,6 @@ define([
             about: aboutTemplate,
             home: homeTemplate,
             notFound: notFoundTemplate,
-            portfolio: portfolioTemplate,
             resume: resumeTemplate,
         },
 

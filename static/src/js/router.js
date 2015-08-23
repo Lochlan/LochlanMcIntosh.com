@@ -15,7 +15,6 @@ define([
             'about(/)': 'staticPage',
             'contact(/)': 'contact',
             'home(/)': 'staticPage',
-            'portfolio(/)': 'staticPage',
             'resume(/)': 'staticPage',
 
             '*notFound': 'notFound',
