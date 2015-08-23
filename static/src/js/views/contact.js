@@ -5,7 +5,7 @@ define([
     'templates/contact',
     'templates/contact-submitted',
     'templates/contact-error',
-], function (_, Backbone, Model, contactTpl, contactSubmittedTpl, contactErrorTpl) {
+], function (_, Backbone, Message, contactTpl, contactSubmittedTpl, contactErrorTpl) {
     'use strict';
 
     // Hack for Android 4 (window.name defaults to "context")
@@ -20,7 +20,7 @@ define([
         template: contactTpl,
 
         initialize: function () {
-            this.model = new Model();
+            this.model = new Message();
 
             this.submitSuccess = this.submitSuccess.bind(this);
             this.submitError = this.submitError.bind(this);
