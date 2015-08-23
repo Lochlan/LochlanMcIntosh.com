@@ -6,7 +6,13 @@ define([
 
     var BaseView = Backbone.View.extend({
         constructor: function () {
-            this.model = _.result(this, 'model');
+            [
+                'collection',
+                'model',
+            ].forEach(function (propertyName) {
+                this[propertyName] = _.result(this, propertyName);
+            }.bind(this));
+
             Backbone.View.apply(this, arguments);
         },
     });

@@ -12,6 +12,42 @@ define([
             view = new BaseView();
         });
 
+        describe('when defined with a collection object', function () {
+            var collection;
+
+            beforeEach(function () {
+                collection = new Backbone.Collection();
+                view = new (BaseView.extend({
+                    collection: collection,
+                }))();
+            });
+
+            describe('when constructing', function () {
+                it('should have a collection attribute set to the defined object', function () {
+                    expect(view.collection).toEqual(collection);
+                });
+            });
+        });
+
+        describe('when defined with a collection function', function () {
+            var collection;
+
+            beforeEach(function () {
+                view = new (BaseView.extend({
+                    collection: function () {
+                        collection = new Backbone.Collection();
+                        return collection;
+                    },
+                }))();
+            });
+
+            describe('when constructing', function () {
+                it('should have a collection attribute set to the defined function\'s return value', function () {
+                    expect(view.collection).toEqual(collection);
+                });
+            });
+        });
+
         describe('when defined with a model object', function () {
             var model;
 
