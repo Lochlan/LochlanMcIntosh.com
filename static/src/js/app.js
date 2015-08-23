@@ -1,14 +1,19 @@
 define([
     'underscore',
     'lib/base-object',
+    'router',
     'views/contact',
     'views/page_title',
     'views/static',
     'views/transitioner',
-], function (_, BaseObject, ContactView, PageTitleView, StaticView, TransitionerView) {
+], function (_, BaseObject, Router, ContactView, PageTitleView, StaticView, TransitionerView) {
     'use strict';
 
-    var AppController = BaseObject.extend({
+    var App = BaseObject.extend({
+
+        router: function () {
+            return new Router({ app: this });
+        },
 
         views: function () {
             // views that should persist across page transitions
@@ -20,8 +25,9 @@ define([
         },
 
         initialize: function () {
-            this.goTo = _.result(this, 'goTo');
             this.views = _.result(this, 'views');
+            this.goTo = _.result(this, 'goTo');
+            this.router = _.result(this, 'router');
         },
 
         goTo: function () {
@@ -73,5 +79,5 @@ define([
         },
     });
 
-    return AppController;
+    return App;
 });
