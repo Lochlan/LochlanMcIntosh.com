@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    json (1.8.2)
-    sass (3.4.13)
+    json (1.8.3)
+    sass (3.4.19)
     travis-lint (2.0.0)
       json
 
@@ -10,5 +10,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  sass (= 3.4.13)
+  sass (= 3.4.19)
   travis-lint (= 2.0.0)
+
+BUNDLED WITH
+   1.10.6
