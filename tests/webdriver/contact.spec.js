@@ -20,10 +20,10 @@ describe('Contact page', function () {
     assert.itShouldHaveTheElement('input[name="subject"]');
     assert.itShouldHaveTheElement('textarea[name="text"]');
 
-    describe('when submitting the contact form', function (done) {
+    describe('when submitting the contact form', function () {
         var pageURL;
 
-        describe('when input is valid', function (done) {
+        describe('when input is valid', function () {
             beforeEach(function (done) {
                 browser
                     .url(function(err, res) {

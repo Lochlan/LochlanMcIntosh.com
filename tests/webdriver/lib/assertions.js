@@ -27,7 +27,7 @@ exports.itShouldHaveTheTitle = function (specifiedTitle) {
 };
 
 exports.shared = function () {
-    describe('when clicking the footer link', function (done) {
+    describe('when clicking the footer link', function () {
         var initialWindowHandle;
         var openedWindowHandle;
 
