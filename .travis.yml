@@ -3,11 +3,6 @@ python:
 - '3.3'
 - '3.4'
 install:
-- mkdir travis-phantomjs
-- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
-- export PATH=$PWD/travis-phantomjs:$PATH
 - pip install --requirement requirements.txt --upgrade
 - nvm install v0.12.5
 - npm install npm@3.0.0 -g
