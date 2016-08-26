@@ -5,24 +5,21 @@ var _ = require('underscore');
 var exports = module.exports = {};
 
 exports.itShouldHaveTheElement = function (selector) {
-    it('should have the element ' + selector, function (done) {
+    it('should have the element ' + selector, function () {
         browser
             .element(selector, function (err, el) {
                 expect(el).toBeDefined();
-
-            })
-            .call(done);
+            });
     });
 };
 
 exports.itShouldHaveTheTitle = function (specifiedTitle) {
-    it('should have the title ' + specifiedTitle, function (done) {
+    it('should have the title ' + specifiedTitle, function () {
         browser
             .getTitle(function (err, title) {
                 expect(err).toBe(undefined);
                 expect(title).toBe(specifiedTitle);
-            })
-            .call(done);
+            });
     });
 };
 
@@ -31,7 +28,7 @@ exports.shared = function () {
         var initialWindowHandle;
         var openedWindowHandle;
 
-        beforeEach(function (done) {
+        beforeEach(function () {
             browser
                 .windowHandle(function (err, windowHandle) {
                     initialWindowHandle = windowHandle.value;
@@ -39,24 +36,21 @@ exports.shared = function () {
                 .click('.footer > a')
                 .windowHandles(function (err, windowHandles) {
                     openedWindowHandle = _.without(windowHandles.value, initialWindowHandle)[0]
-                })
-                .call(done);
+                });
         });
 
-        afterEach(function (done) {
+        afterEach(function () {
             // close opened window
             browser
                 .switchTab(openedWindowHandle)
-                .close(initialWindowHandle)
-                .call(done);
+                .close(initialWindowHandle);
         });
 
-        it('should open an additional window', function (done) {
+        it('should open an additional window', function () {
             browser
                 .windowHandles(function (err, windowHandles) {
                     expect(windowHandles.value.length).toBe(2);
-                })
-                .call(done);
+                });
         });
     });
 };

@@ -3,12 +3,10 @@
 var assert = require('./lib/assertions.js');
 
 describe('Home page', function () {
-    beforeEach(function (done) {
+    beforeEach(function () {
         var url = '/';
 
-        browser
-            .url(url)
-            .call(done);
+        browser.url(url);
     });
 
     assert.itShouldHaveTheTitle('Lochlan McIntosh - Portland, OR. Web Developer and Software Engineer');

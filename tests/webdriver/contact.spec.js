@@ -3,13 +3,12 @@
 var assert = require('./lib/assertions.js');
 
 describe('Contact page', function () {
-    beforeEach(function (done) {
+    beforeEach(function () {
         var url = '/contact/';
 
         browser
             .url(url)
-            .pause(10) // wait for page load
-            .call(done);
+            .pause(10); // wait for page load
     });
 
     assert.itShouldHaveTheTitle('Lochlan McIntosh - Contact');
@@ -24,7 +23,7 @@ describe('Contact page', function () {
         var pageURL;
 
         describe('when input is valid', function () {
-            beforeEach(function (done) {
+            beforeEach(function () {
                 browser
                     .url(function(err, res) {
                         pageURL = res.value;
@@ -34,29 +33,26 @@ describe('Contact page', function () {
                     .setValue('input[name="subject"]', 'subject')
                     .setValue('textarea[name="text"]', 'text')
                     .submitForm('form')
-                    .pause(2000) // wait for API response
-                    .call(done);
+                    .pause(2000); // wait for API response
             });
 
             // TODO fix this failing test
             // Replace defunct free Mandrill account with something else
-            xit('Should output the success message', function (done) {
+            xit('Should output the success message', function () {
                 browser
                     .getText('.transitioner_view-active', function(err, text) {
                         expect(text).toEqual('Your message has been submitted successfully. Thank you!');
-                    })
-                    .call(done);
+                    });
             });
 
-            it('should not change the URL', function (done) {
+            it('should not change the URL', function () {
                 // this assertion is ensuring the absence of a query string
                 // if the form submit listener fails then the browser will treat the form submission naively
                 browser
                     .url(function(err, res) {
                         var currentURL = res.value;
                         expect(currentURL).toEqual(pageURL);
-                    })
-                    .call(done);
+                    });
             });
         });
     });

@@ -3,12 +3,10 @@
 var assert = require('./lib/assertions.js');
 
 describe('Résumé page', function () {
-    beforeEach(function (done) {
+    beforeEach(function () {
         var url = '/resume/';
 
-        browser
-            .url(url)
-            .call(done);
+        browser.url(url);
     });
 
     assert.itShouldHaveTheTitle('Lochlan McIntosh - Résumé');
