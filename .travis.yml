@@ -16,6 +16,7 @@ env:
   - secure: P9oBHBePwRduFw/lJpUAQwDQL8hpfbpqdHi5QeVzqNCzs7VYJ+EdbXBGFJ9ZvRiryKXAnIA3la/LitY/rjUIxgEPMF3vTYEjRPv6JLDsDQf4daxU3d/NAxJL1mjPFY/DdBC1yeGjyi7JcfGsrunjQtRWhPfXCm3q/saCVJphcr0=
   - secure: b0eCVMA6OT0m4T/MthVihXARXy6dYLAOB7/WMR8zmTRQzjvFa5s81qSjFYCDdzCm6acVMdoT71IqkrRMQiCraLcicuLBC5P5sWyeKbHZTS7o6aD1OGkiYQ3sZ4xU2NL8FTH6UOyeIHororvR5KZJZFooKVFIocQKrxA9qWjxaX0=
   - secure: VYpcz06fuK3D+exaewSI+S1L5+vesVO/ijUjz6UySUaC2Qtev0QSkA3HK6rw6tzZgQb+FEiJiSZ50Jh/niAj45qaRZVeOUm3av7a+Xgu2M007bCe+sRHrhv7FW94d4TYRvyjaCvc49zcK7H10hbCNx2N34IS/bBWTKy9v2Fycio=
+  - secure: E5OrlKtUVuKk5C612TsSmWLwpRyVuukJ6JHLJmsw+yecIkmhW7dCmzfc5LVoLm5GO1WX8nDwGeymDDjXU2rIlBH7jK3wo0Pgn60U9iwA99nJf4Le4eNvqy2M3s2MnvR/byilSyofV2LbpSO4SrQhj3V4Y23wo54JlwPn+WaPto0=
 notifications:
   email: false
   slack:
@@ -24,7 +25,7 @@ deploy:
   provider: openshift
   user: lochlan.mcintosh@gmail.com
   password:
-    secure: lWbggpFeqRrDdzd5GatMy3mUnDsK0fyALhFV2DbH6g3HHUpNa4OhOADJEkUu+6ahU1KAMksZ/GxZ835hVAMuMD/6g5RK/LyDQDNr/KFERP3QPZG69NW5EmUsCtvkAdK8tPeHtmTfTZmgmizTGaJoTrvunarVxJ5LItM8HO8kZA4=
+    secure: $OPENSHIFT_PASSWORD
   app: lochlanmcintoshcom
   domain: lochlan
   on:
