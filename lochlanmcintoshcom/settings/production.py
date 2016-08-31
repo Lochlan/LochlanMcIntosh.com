@@ -26,7 +26,7 @@ REST_FRAMEWORK.update({
     ),
     'DEFAULT_THROTTLE_RATES': {
         'burst': '60/min',
-        'mandrill': '10/day',
+        'email_service_provider': '10/day',
         'sustained': '1000/day'
     },
 })

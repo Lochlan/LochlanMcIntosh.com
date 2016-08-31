@@ -55,5 +55,5 @@ See [the Makefile](https://github.com/Lochlan/LochlanMcIntosh.com/blob/master/Ma
 # Configuration
 
 Environment variables:
-- `MANDRILL_API_KEY` - Used for sending e-mails via Mandrill
+- `SPARKPOST_API_KEY` - Used for sending e-mails via SparkPost
 - `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` - Used for running Sauce Labs tests

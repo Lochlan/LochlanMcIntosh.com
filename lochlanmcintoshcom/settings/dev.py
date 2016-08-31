@@ -19,7 +19,7 @@ REST_FRAMEWORK.update({
         'rest_framework.throttling.ScopedRateThrottle',
     ),
     'DEFAULT_THROTTLE_RATES': {
-        'mandrill': '100/second', # effectively unlimited
+        'email_service_provider': '100/second', # effectively unlimited
     },
 })
 

@@ -11,7 +11,7 @@ class Contact(APIView):
     """
     Sends an e-mail to the site owner.
     """
-    throttle_scope = 'mandrill'
+    throttle_scope = 'email_service_provider'
 
     def post(self, request, format=None):
         serializer = MessageSerializer(data=request.data)
@@ -21,8 +21,8 @@ class Contact(APIView):
         if serializer.is_valid():
             emails_sent = send_mail(
                 request.data['subject'],
-                request.data['text'],
-                Template('"$name" <$email>').substitute(request.data),
+                Template('$email\n\n$text').substitute(request.data),
+                Template('"$name" <donotreply@lochlanmcintosh.com>').substitute(request.data),
                 ["info@lochlanmcintosh.com"]
                 )
 

@@ -14,7 +14,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_nose',
-    'djrill',
+    'anymail',
     'rest_framework',
     'lochlanmcintoshcom.api',
 )
@@ -50,11 +50,11 @@ NOSE_ARGS = [
 # Email
 
 try:
-    MANDRILL_API_KEY = os.environ['MANDRILL_API_KEY']
+    SPARKPOST_API_KEY = os.environ['SPARKPOST_API_KEY']
 except KeyError:
-    MANDRILL_API_KEY = ''
+    SPARKPOST_API_KEY = ''
 
-EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
+EMAIL_BACKEND = 'anymail.backends.sparkpost.SparkPostBackend'
 DEFAULT_FROM_EMAIL = 'www@lochlanmcintosh.com'
 
 

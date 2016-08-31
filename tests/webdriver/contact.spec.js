@@ -36,9 +36,7 @@ describe('Contact page', function () {
                     .pause(2000); // wait for API response
             });
 
-            // TODO fix this failing test
-            // Replace defunct free Mandrill account with something else
-            xit('Should output the success message', function () {
+            it('Should output the success message', function () {
                 browser
                     .getText('.transitioner_view-active', function(err, text) {
                         expect(text).toEqual('Your message has been submitted successfully. Thank you!');
