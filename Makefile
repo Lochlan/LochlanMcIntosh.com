@@ -231,7 +231,7 @@ $(SRC_JS_VENDOR_PATH)/backbone.js: node_modules/backbone/backbone.js
 $(SRC_JS_VENDOR_PATH)/jquery.js: node_modules/jquery/dist/jquery.js
 $(SRC_JS_VENDOR_PATH)/jquery.serialize-object.js: node_modules/form-serializer/jquery.serialize-object.js
 $(SRC_JS_VENDOR_PATH)/require.js: node_modules/requirejs/require.js
-$(SRC_JS_VENDOR_PATH)/swig.js: node_modules/swig/dist/swig.js
+$(SRC_JS_VENDOR_PATH)/swig.js: node_modules/swig-templates/dist/swig.js
 $(SRC_JS_VENDOR_PATH)/underscore.js: node_modules/underscore/underscore.js
 $(SRC_SCSS_VENDOR_PATH)/_normalize.scss: node_modules/normalize.css/normalize.css
 $(SRC_JS_VENDOR) $(SRC_SCSS_VENDOR):

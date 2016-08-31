@@ -24,7 +24,7 @@
     "no-comment": "0.0.2",
     "normalize.css": "3.0.3",
     "requirejs": "2.1.22",
-    "swig": "1.4.2",
+    "swig-templates": "2.0.1",
     "uglify-js": "2.6.1",
     "underscore": "1.8.3",
     "webfont-dl": "0.1.2"
