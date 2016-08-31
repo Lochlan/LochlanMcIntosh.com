@@ -1,7 +1,6 @@
 language: python
 python:
 - '3.3'
-- '3.4'
 install:
 - pip install --requirement requirements.txt --upgrade
 - nvm install v6.4.0
