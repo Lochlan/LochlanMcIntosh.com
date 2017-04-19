@@ -40,10 +40,6 @@ module.exports = function (config) {
             browserName: 'android',
             version: '5.1',
         },
-        'SL_Android_Emulator_4.0': {
-            browserName: 'android',
-            version: '4.0',
-        },
     }, function (browserConfig) {
         return _.extend(browserConfig, {
             base: 'WebDriver',
