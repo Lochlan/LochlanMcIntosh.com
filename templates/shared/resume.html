@@ -7,19 +7,15 @@
 
 {% block shared %}
     <section>
-        <h3>Education</h3>
-
-        <p>B.Sc. Computer Science, Portland State University, Portland, OR. Graduated 2012.</p>
-
         <h3>Technology</h3>
 
         <dl class="cv_technology_list">
             <dt>Expert</dt>
-                <dd>JavaScript (ES5 & ES6), CSS, HTML, Backbone.js, Underscore.js, Require.js, jQuery, Sass, Git, Github</dd>
+                <dd>JavaScript (ES6 and beyond), CSS, HTML, Backbone.js, Lodash/Underscore, Require.js, jQuery, Sass, Git, Github</dd>
             <dt>Proficient</dt>
-                <dd>Python, PHP, SQL, CoffeeScript, Node.js, Marionette.js, Mocha, Chai, Jasmine, QUnit, Karma, Nightmare, Travis CI, Circle CI, Photoshop, Make, 6502 assembly</dd>
+                <dd>Unix/Linux, Python, SQL, Node.js, CoffeeScript, Marionette.js, Mocha, Chai, Jasmine, Karma, Nightmare, Travis CI, Circle CI, Photoshop, GNU Make, 6502 assembly</dd>
             <dt>Some Familiarity</dt>
-                <dd>Golang, C, Ruby, Rails, Django, Laravel, React, Polymer, Sinon.JS, D3, three.js, Jenkins, Apache, NGINX, OpenShift, AWS, SauceLabs</dd>
+                <dd>Swift, Objective C, Java, PHP, C, Ruby, Rails, Django, Laravel, React, React Native, GraphQL, Jest, AWS (Lambda, CloudFormation, S3, CloudFront, EC2, IAM), Apache, NGINX, OpenShift, SauceLabs, Sketch, and a long tail of other (less interesting) things</dd>
         </dl>
 
         <h3>Process</h3>
@@ -40,7 +36,7 @@
 
         <section>
             <header class="cv_position_header">
-                <h3>Front End Engineer (SDE II)</h3>
+                <h3>Software Development Engineer</h3>
                 <p><strong><a href="https://www.amazon.com/">Amazon.com</a></strong>, Portland, OR.</p>
                 <p>Apr 2017–Present</p>
             </header>
@@ -48,14 +44,31 @@
             <ul class="cv_position_detail_list">
                 <li>Delivery Experience team.</li>
 
-                <li>6 person collocated team working within a distributed engineering org.</li>
+                <li>17 person collocated team working within a distributed engineering org.</li>
 
                 <li>
                     <dl>
                         <dt>Responsibilities</dt>
                             <dd>
                                 <ul>
-                                    <li>Currently working on a confidential project due to be released later this year.</li>
+                                    <li>Currently working on a React Native mobile application and an AWS Lambda GraphQL API due to be released early next year.</li>
+
+                                    <li>Responsible for development and maintenance of a highly-visible system with peak load exceeding 500 transactions per second, generating over $2 billion dollars of revenue per year.</li>
+
+                                    <li>Mentor junior SDEs.</li>
+                                </ul>
+                            </dd>
+                    </dl>
+                </li>
+
+                <li>
+                    <dl>
+                        <dt>Achievements</dt>
+                            <dd>
+                                <ul>
+                                    <li>Created eligibility widget for Amazon Key, written in Perl and deployed on the Amazon.com shared stack.</li>
+
+                                    <li>Created Ruby/Rails debug tool for Amazon Key.</li>
                                 </ul>
                             </dd>
                     </dl>
@@ -289,5 +302,11 @@
                    <dd>MODx website, including: MySQL product database and import tool; PHP product search with JavaScript front end; small custom product API for consumption by search front end; user data storage with sessions; and a customer database with back-end tools.</dd>
             </dl>
         </section>
+    </section>
+
+    <section>
+        <h3>Education</h3>
+
+        <p>B.Sc. Computer Science, Portland State University, Portland, OR. Graduated 2012.</p>
     </section>
 {% endblock %}
